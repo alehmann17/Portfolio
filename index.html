@@ -1,494 +1,853 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Andrew Lehman — Healthcare &amp; Data</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andrew Lehman</title>
+  <meta name="description" content="Andrew Lehman sources software companies for Hg in New York. Before that, three years of orthopedic research at UCSF and NYU Langone.">
+  <meta name="author" content="Andrew Lehman">
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#13120f" media="(prefers-color-scheme: dark)">
+
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Andrew Lehman">
+  <meta property="og:description" content="Origination at Hg. Published orthopedic researcher. Formerly UCSF and NYU Langone.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.className = 'js';</script>
 </head>
 <body>
 
-  <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="#">Andrew<em>.</em></a>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#research">Experience</a></li>
-      <li><a href="#publications">Publications</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <a href="#contact" class="nav-cta">Get in Touch</a>
-  </nav>
+<a class="skip" href="#index">Skip to the index</a>
 
+<div class="shell">
 
-  <!-- HERO -->
-  <section id="hero">
-    <div class="hero-left">
-      <p class="hero-eyebrow reveal reveal-1">Healthcare · Data · Analytics</p>
-      <h1 class="reveal reveal-2">Andrew<br/><span>Lehman</span></h1>
-      <p class="hero-desc reveal reveal-3">
-        I bring clinical depth and analytical rigor to healthcare problems. I've built statistical models on longitudinal patient datasets, published peer-reviewed research across orthopedics and sports medicine, and worked directly with patients as an EMT and medical scribe. I'm looking to apply that experience somewhere it can drive real impact.
+  <!-- ══════════ MASTHEAD ══════════ -->
+  <header class="masthead" id="top">
+    <div class="masthead-top">
+      <h1>Andrew<br><em>Lehman</em></h1>
+
+      <!-- Drop a square portrait.jpg beside index.html and this fills itself in.
+           Until then it shows the monogram. -->
+      <figure class="portrait">
+        <img src="portrait.jpg" alt="Andrew Lehman"
+             onerror="this.closest('.portrait').classList.add('empty');this.remove();">
+        <figcaption aria-hidden="true">AL</figcaption>
+      </figure>
+    </div>
+
+    <p class="standfirst">
+      <b>Origination, Hg</b> <span class="dot"></span> New York
+      <span class="dot"></span> B.S. Biology, Washington &amp; Lee
+    </p>
+
+    <div class="abstract">
+      <p>
+        I find software companies worth buying before their founders decide to sell.
+        I learned how in orthopedic research, where I spent three years comparing what a
+        dataset supported against what the abstract claimed.
       </p>
-      <div class="hero-actions reveal reveal-4">
-        <a href="#research" class="btn btn-solid">View Experience</a>
-        <a href="#publications" class="btn btn-outline">Publications</a>
-      </div>
+      <p>
+        At UCSF I measured whether an extra imaging step caught more shoulder tears than
+        the cheaper one. At NYU Langone I worked through fifteen years of hip arthroscopy
+        outcomes.
+        At Hg I build the target universe for a software cluster, then hand it to sector
+        specialists who tell me where it breaks.
+      </p>
     </div>
-
-    <div class="hero-right reveal reveal-2">
-      <div class="hero-stat-row">
-        <div class="hero-stat-num">3</div>
-        <div class="hero-stat-text">
-          <span class="hero-stat-label">Peer-Reviewed Publications</span>
-          <span class="hero-stat-sub">Orthopedics, Sports Medicine, Musculoskeletal</span>
-        </div>
-      </div>
-      <div class="hero-stat-row">
-        <div class="hero-stat-num">3</div>
-        <div class="hero-stat-text">
-          <span class="hero-stat-label">Clinical Research Institutions</span>
-          <span class="hero-stat-sub">NYU Langone, UCSF, Washington &amp; Lee</span>
-        </div>
-      </div>
-      <div class="hero-stat-row">
-        <div class="hero-stat-num">3.8</div>
-        <div class="hero-stat-text">
-          <span class="hero-stat-label">GPA — President's List</span>
-          <span class="hero-stat-sub">B.S. Biology · Minor in Data Science</span>
-        </div>
-      </div>
-    </div>
-  </section>
+  </header>
 
 
-  <!-- STATS HIGHLIGHT BAR -->
-  <section id="stats">
-    <div class="stats-row">
-      <div class="stat-block">
-        <span class="stat-big">EHR</span>
-        <span class="stat-desc">Clinical workflow &amp; patient data systems</span>
-      </div>
-      <div class="stat-block">
-        <span class="stat-big">R + Py</span>
-        <span class="stat-desc">Statistical modeling &amp; analytics</span>
-      </div>
-      <div class="stat-block">
-        <span class="stat-big">SPSS</span>
-        <span class="stat-desc">Data analysis &amp; reporting</span>
-      </div>
-      <div class="stat-block">
-        <span class="stat-big">EMT</span>
-        <span class="stat-desc">Frontline patient care — NREMT Certified</span>
-      </div>
+  <!-- ══════════ THREADS ══════════ -->
+  <section class="threads" aria-labelledby="threads-h">
+    <h2 class="rubric" id="threads-h">Three threads run through all of it</h2>
+
+    <div class="thread-grid">
+      <button class="thread" data-thread="evidence" type="button" aria-pressed="false">
+        <span class="thread-name">Evidence</span>
+        <span class="thread-desc">
+          Does the data support the decision someone already made? Diagnostic accuracy at
+          UCSF, five-year outcomes at NYU, investment theses at Hg.
+        </span>
+        <span class="thread-count" aria-hidden="true"></span>
+      </button>
+
+      <button class="thread" data-thread="tooling" type="button" aria-pressed="false">
+        <span class="thread-name">Tooling</span>
+        <span class="thread-desc">
+          Build the instrument instead of running the task again. Sourcing pipelines,
+          analysis pipelines, RNA-seq pipelines.
+        </span>
+        <span class="thread-count" aria-hidden="true"></span>
+      </button>
+
+      <button class="thread" data-thread="teams" type="button" aria-pressed="false">
+        <span class="thread-name">Teams</span>
+        <span class="thread-desc">
+          Work that depends on people who rotate out. Volunteer scribes, ambulance crews,
+          advisees, a defensive unit.
+        </span>
+        <span class="thread-count" aria-hidden="true"></span>
+      </button>
     </div>
   </section>
 
 
-  <!-- ABOUT -->
-  <section id="about">
-    <div class="section-wrap">
-      <div class="section-label">
-        <span class="section-label-num">01</span>
-        <div class="section-label-line"></div>
-        <h2>About</h2>
-      </div>
+  <!-- ══════════ CONSTELLATION ══════════ -->
+  <figure class="plot" hidden>
+    <svg viewBox="0 0 1000 210" aria-hidden="true"></svg>
+    <figcaption>
+      <span class="plot-read">Hover any mark to name it.</span>
+      <span class="plot-key">
+        <i class="k-paper"></i> paper
+        <i class="k-span"></i> role or service
+      </span>
+    </figcaption>
+  </figure>
 
-      <div class="about-grid">
-        <div class="about-body">
-          <h3 class="about-heading">Clinical depth.<br/><em>Analytical rigor.</em></h3>
-          <p>
-            Most people in healthcare analytics have either domain knowledge or technical skills. I've spent the last three years building both. At NYU Langone, I analyzed large-scale longitudinal datasets to identify performance drivers and utilization patterns, built statistical models in R and Python, and translated findings into actionable recommendations for senior stakeholders.
-          </p>
-          <p>
-            At UCSF, I ran comparative diagnostic accuracy studies across imaging modalities. At Mother of Mercy Free Clinic, I redesigned operational workflows and training systems from scratch. And as a certified EMT with the Lexington Fire Department, I deliver coordinated care under pressure on every call.
-          </p>
-          <p>
-            I'm looking for a role where I can combine these skills: digging into data, communicating complex findings clearly, and working across teams to drive better outcomes. I'm a fast learner, a strong communicator, and I'll outwork anyone in the room.
-          </p>
-        </div>
 
-        <div>
-          <div class="info-table">
-            <div class="info-row">
-              <span class="info-key">Institution</span>
-              <span class="info-val">Washington &amp; Lee University</span>
-            </div>
-            <div class="info-row">
-              <span class="info-key">Degree</span>
-              <span class="info-val">B.S. Biology · Data Science Minor</span>
-            </div>
-            <div class="info-row">
-              <span class="info-key">Graduation</span>
-              <span class="info-val">Class of 2026</span>
-            </div>
-            <div class="info-row">
-              <span class="info-key">Location</span>
-              <span class="info-val">San Francisco, CA</span>
-            </div>
-            <div class="info-row">
-              <span class="info-key">Status</span>
-              <span class="info-val available">Open to Opportunities</span>
-            </div>
-            <div class="info-row">
-              <span class="info-key">Tools</span>
-              <span class="info-val">R, Python, SPSS, Excel · Working Proficiency in Chinese</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- ══════════ INDEX CONTROLS ══════════ -->
+  <div class="controls" id="controls">
+    <div class="lens" role="group" aria-label="Arrange the index by">
+      <span class="lens-label">Arrange by</span>
+      <button data-lens="thread" aria-pressed="true"  type="button">Thread</button>
+      <button data-lens="time"   aria-pressed="false" type="button">Time</button>
+      <button data-lens="kind"   aria-pressed="false" type="button">Kind</button>
     </div>
-  </section>
+    <button class="clear" type="button" hidden>Clear filter <span aria-hidden="true">×</span></button>
+  </div>
 
 
-  <!-- EXPERIENCE -->
-  <section id="research">
-    <div class="section-wrap">
-      <div class="section-label">
-        <span class="section-label-num">02</span>
-        <div class="section-label-line"></div>
-        <h2>Experience</h2>
+  <!-- ══════════ THE INDEX ══════════ -->
+  <main class="index" id="index">
+
+    <!-- ─── Hg ─── -->
+    <article class="item" data-threads="tooling evidence" data-kind="role"
+             data-start="2026.42" data-end="2026.99" data-sort="2026.42">
+      <div class="item-head">
+        <h3 class="item-title">Hg</h3>
+        <span class="item-when">2026 —</span>
       </div>
-
-      <!-- NYU Langone -->
-      <div class="research-item">
-        <div class="research-meta">
-          <span class="research-org">NYU Langone</span>
-          <span class="research-date">Jun 2025 – Aug 2025</span>
-          <span class="research-loc">New York, NY</span>
-        </div>
-        <div>
-          <div class="research-role">Clinical Research Fellow — Orthopedic Center</div>
-          <ul class="research-bullets">
-            <li>Analyzed large-scale longitudinal datasets to identify performance drivers, utilization patterns, and value creation opportunities across patient populations.</li>
-            <li>Built and iterated <strong>statistical models</strong> <span class="stat-pill">R</span> <span class="stat-pill">Python</span> <span class="stat-pill">Excel</span> including regression, segmentation, and time-series analysis, generating data-driven forecasts and actionable insights.</li>
-            <li>Designed reproducible analytical workflows and automated data cleaning and validation steps to improve speed and reliability of analyses.</li>
-            <li>Collaborated with senior stakeholders to define KPIs, synthesize complex findings into concise briefing materials, and translate analytical outputs into resource allocation recommendations.</li>
-            <li>Leveraged AI-driven tools and workflows to accelerate research productivity and enhance data exploration.</li>
-            <li>Invited to continue research through the year based on performance, initiative, and analytic contributions.</li>
-          </ul>
-        </div>
+      <p class="item-role">Analyst, Origination <span class="slash">/</span> New York</p>
+      <div class="item-body">
+        <ul>
+          <li>I source and evaluate lower-mid-market vertical software companies.</li>
+          <li>I build the target universe for a cluster, then hand it to sector specialists
+              who tell me where it breaks. Healthcare and compliance so far.</li>
+          <li>I built the origination team's research and sourcing tooling. It replaced work
+              analysts used to do by hand.</li>
+        </ul>
       </div>
+      <div class="item-tags"></div>
+    </article>
 
-      <!-- Medical Scribe -->
-      <div class="research-item">
-        <div class="research-meta">
-          <span class="research-org">Mother of Mercy Clinic</span>
-          <span class="research-date">May 2024 – Sep 2024</span>
-          <span class="research-loc">Manassas, VA</span>
-        </div>
-        <div>
-          <div class="research-role">Volunteer Medical Scribe, Medical Assistant</div>
-          <ul class="research-bullets">
-            <li>Identified systemic inefficiencies in volunteer scribe onboarding; independently redesigned the training curriculum with multimedia materials and proficiency assessments, standardizing performance across rotating volunteer cohorts.</li>
-            <li>Operated as a cross-functional generalist, managing patient intake workflows, clinical documentation, and ad hoc operational problem-solving across the clinic.</li>
-            <li>Maintained accurate electronic health records and streamlined documentation processes to improve data integrity and clinical throughput.</li>
-          </ul>
-        </div>
+    <!-- ─── NYU Langone ─── -->
+    <article class="item" data-threads="evidence tooling" data-kind="role"
+             data-start="2025.42" data-end="2025.67" data-sort="2025.42">
+      <div class="item-head">
+        <h3 class="item-title">NYU Langone, Orthopedic Center</h3>
+        <span class="item-when">2025</span>
       </div>
-
-      <!-- UCSF -->
-      <div class="research-item">
-        <div class="research-meta">
-          <span class="research-org">UCSF Medical Center</span>
-          <span class="research-date">Jun 2023 – May 2024</span>
-          <span class="research-loc">San Francisco, CA</span>
-        </div>
-        <div>
-          <div class="research-role">Research Assistant — Orthopedic Institute</div>
-          <ul class="research-bullets">
-            <li>Analyzed diagnostic imaging datasets across modalities to compare utilization rates, sensitivity, and cost-effectiveness, applying statistical testing to quantify performance differences.</li>
-            <li>Translated findings into published, peer-reviewed research and written recommendations on protocol selection for senior physicians and department leadership.</li>
-          </ul>
-        </div>
+      <p class="item-role">Clinical Research Fellow <span class="slash">/</span> New York</p>
+      <div class="item-body">
+        <ul>
+          <li>I worked through fifteen years of hip arthroscopy records, asking what predicted
+              a good outcome at the five-year mark.</li>
+          <li>I built the statistical models in R and Python and wrote the cleaning pipeline so
+              the next fellow could rerun them.</li>
+          <li>I ran studies from design through IRB, enrollment, analysis, and follow-up inside
+              the Sports Medicine Division.</li>
+          <li>Dr. Jazrawi's group asked me to stay on through the academic year.</li>
+        </ul>
       </div>
+      <div class="item-tags"></div>
+    </article>
 
-      <!-- W&L Neuroscience -->
-      <div class="research-item">
-        <div class="research-meta">
-          <span class="research-org">W&amp;L Neuroscience Dept.</span>
-          <span class="research-date">Sep 2024 – May 2025</span>
-          <span class="research-loc">Lexington, VA</span>
-        </div>
-        <div>
-          <div class="research-role">Student Research Assistant — Transcriptomics</div>
-          <ul class="research-bullets">
-            <li>Conducted <strong>RNA-seq differential expression analysis</strong> <span class="stat-pill">R</span> using DESeq2 on CNS tissue, identifying gene regulatory changes linked to circadian entrainment.</li>
-            <li>Managed full wet-lab-to-computational pipeline: microsurgical tissue dissection through library preparation through statistical analysis.</li>
-          </ul>
-        </div>
+    <!-- ─── Osteology paper ─── -->
+    <article class="item" data-threads="evidence" data-kind="paper"
+             data-start="2025.9" data-end="2025.9" data-sort="2025.9">
+      <div class="item-head">
+        <h3 class="item-title">The Effect of Age and Symptom Duration on Patient-Reported
+          Outcomes After Hip Arthroscopy</h3>
+        <span class="item-when">2025</span>
       </div>
-
-      <!-- EMT -->
-      <div class="research-item">
-        <div class="research-meta">
-          <span class="research-org">Lexington Fire Department</span>
-          <span class="research-date">Aug 2024 – Present</span>
-          <span class="research-loc">Lexington, VA</span>
-        </div>
-        <div>
-          <div class="research-role">Volunteer Emergency Medical Technician</div>
-          <ul class="research-bullets">
-            <li>Collaborate with team members to deliver coordinated care under high-pressure situations.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Lacrosse -->
-      <div class="research-item">
-        <div class="research-meta">
-          <span class="research-org">W&amp;L Varsity Lacrosse</span>
-          <span class="research-date">Aug 2022 – Present</span>
-          <span class="research-loc">Lexington, VA</span>
-        </div>
-        <div>
-          <div class="research-role">Team Member</div>
-          <ul class="research-bullets">
-            <li>Participate in practices and national games, 25+ hours a week while maintaining a full courseload.</li>
-            <li>2025-26 NSCA All-American Strength and Conditioning Athlete of the Year.</li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Career Fellow -->
-      <div class="research-item">
-        <div class="research-meta">
-          <span class="research-org">W&amp;L Career Dev. Office</span>
-          <span class="research-date">Mar 2024 – Present</span>
-          <span class="research-loc">Lexington, VA</span>
-        </div>
-        <div>
-          <div class="research-role">Career Fellow</div>
-          <ul class="research-bullets">
-            <li>Provide personalized career advising to students, aiding in achieving their professional goals.</li>
-            <li>Collaborate with CPD staff to develop and implement innovative career-related programming and services.</li>
-          </ul>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- PUBLICATIONS -->
-  <section id="publications">
-    <div class="section-wrap">
-      <div class="section-label">
-        <span class="section-label-num">03</span>
-        <div class="section-label-line"></div>
-        <h2>Publications &amp; Presentations</h2>
-      </div>
-
-      <div class="pub-group">
-        <div class="pub-group-title">Journal Publications</div>
-
-        <div class="pub-item">
-          <div class="pub-dot"></div>
-          <div class="pub-text">
-            Moore M, Montgomery SR, Chen L, <strong>Lehman A</strong>, Levitt S, Kaplan DJ, Youm T. The Effect of Age and Symptom Duration on Patient-Reported Outcomes at 2- and 5-Year Follow-Up in Patients Undergoing Hip Arthroscopy for Femoroacetabular Impingement Syndrome. <em>Osteology.</em> 2025; 5(4):37.
-            <br/><a class="pub-link" href="https://doi.org/10.3390/osteology5040037" target="_blank">doi:10.3390/osteology5040037 →</a>
-          </div>
-        </div>
-
-        <div class="pub-item">
-          <div class="pub-dot"></div>
-          <div class="pub-text">
-            <strong>Lehman A</strong>, Su F &amp; Feeley BT. Humeral Stem Design in Reverse Total Shoulder Arthroplasty. <em>Current Reviews in Musculoskeletal Medicine.</em> 2024.
-            <br/><a class="pub-link" href="https://doi.org/10.1007/s12178-024-09931-w" target="_blank">doi:10.1007/s12178-024-09931-w →</a>
-          </div>
-        </div>
-
-        <div class="pub-item">
-          <div class="pub-dot"></div>
-          <div class="pub-text">
-            Su F, Hettrich C, Wolf B, <strong>Lehman A</strong>, et al. Does MR Arthrography Improve Evaluation of Patients with Posterior Shoulder Instability? An Analysis from the MOON Shoulder Instability Group. <em>Orthopaedic Journal of Sports Medicine.</em> 2024;12(7_suppl2).
-            <br/><a class="pub-link" href="https://doi.org/10.1177/2325967124S00053" target="_blank">doi:10.1177/2325967124S00053 →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="pub-group">
-        <div class="pub-group-title">Under Review &amp; Presentations</div>
-
-        <div class="pub-item">
-          <div class="pub-dot"></div>
-          <div class="pub-text">
-            <strong>Lehman A</strong>, Lee S, Berzolla E, Lezak B, Youm T. Medium to Long Term Outcomes of Hip Arthroscopy for Femoroacetabular Impingement Syndrome in Patients Older than 40: A Systematic Review. <em>Under Review at Arthroscopy.</em> Nov 2025.
-          </div>
-        </div>
-
-        <div class="pub-item">
-          <div class="pub-dot"></div>
-          <div class="pub-text">
-            Sundaram V, Berzolla E, Mercer N, <strong>Lehman A</strong>, Kaplan D, Strauss E. Increased Perioperative LDL Cholesterol Is Associated with Decreased Levels of Anti-Inflammatory Synovial Fluid Biomarkers in Patients Undergoing Knee Surgery. <em>American Orthopaedic Society for Sports Medicine Annual Meeting.</em> July 2025.
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- SKILLS -->
-  <section id="skills">
-    <div class="section-wrap">
-      <div class="section-label">
-        <span class="section-label-num">04</span>
-        <div class="section-label-line"></div>
-        <h2>Skills &amp; Tools</h2>
-      </div>
-
-      <div class="skills-columns">
-
-        <div class="skill-col">
-          <div class="skill-col-title">Data &amp; Analytics</div>
-          <div class="skill-entry">
-            <span class="skill-name">RStudio — Statistical Modeling</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
-            </div>
-          </div>
-          <div class="skill-entry">
-            <span class="skill-name">Python — Data Analysis</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
-            </div>
-          </div>
-          <div class="skill-entry">
-            <span class="skill-name">SPSS</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
-            </div>
-          </div>
-          <div class="skill-entry">
-            <span class="skill-name">MS Excel — Modeling &amp; Analysis</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
-            </div>
-          </div>
-          <div class="skill-entry">
-            <span class="skill-name">Regression &amp; Segmentation</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
-            </div>
-          </div>
-        </div>
-
-        <div class="skill-col">
-          <div class="skill-col-title">Healthcare Domain</div>
-          <div class="skill-entry">
-            <span class="skill-name">Clinical Research</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
-            </div>
-          </div>
-          <div class="skill-entry">
-            <span class="skill-name">EHR Systems &amp; Workflow</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
-            </div>
-          </div>
-          <div class="skill-entry">
-            <span class="skill-name">EMT-B Certified</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
-            </div>
-          </div>
-          <div class="skill-entry">
-            <span class="skill-name">Patient-Reported Outcomes</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
-            </div>
-          </div>
-          <div class="skill-entry">
-            <span class="skill-name">Clinical Documentation</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
-            </div>
-          </div>
-        </div>
-
-        <div class="skill-col">
-          <div class="skill-col-title">Generalist &amp; Communication</div>
-          <div class="skill-entry">
-            <span class="skill-name">Scientific Writing</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
-            </div>
-          </div>
-          <div class="skill-entry">
-            <span class="skill-name">Stakeholder Communication</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
-            </div>
-          </div>
-          <div class="skill-entry">
-            <span class="skill-name">MS Word &amp; PowerPoint</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot filled"></span>
-            </div>
-          </div>
-          <div class="skill-entry">
-            <span class="skill-name">Chinese (Working Proficiency)</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot"></span><span class="dot"></span>
-            </div>
-          </div>
-          <div class="skill-entry">
-            <span class="skill-name">AI Tools &amp; Workflows</span>
-            <div class="skill-dots">
-              <span class="dot filled"></span><span class="dot filled"></span>
-              <span class="dot filled"></span><span class="dot filled"></span><span class="dot"></span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="contact-wrap">
-      <div>
-        <h2 class="contact-heading">Let's connect<br/><span>and build something.</span></h2>
-        <p class="contact-sub">
-          If you're working on something at the intersection of healthcare, data, and analytics, I'd like to hear about it. I bring clinical fluency, statistical rigor, and a bias toward action.
+      <p class="item-role"><i>Osteology</i>, 5(4):37 <span class="slash">/</span> fourth author</p>
+      <div class="item-body">
+        <p class="cite">Moore M, Montgomery SR, Chen L, <b>Lehman A</b>, Levitt S, Kaplan DJ,
+          Youm T.</p>
+        <p>Whether patients under 30 with less than a year of symptoms do better than patients
+          over 40 who waited longer. Single surgeon, sixteen years of records, two- and
+          five-year follow-up.</p>
+        <p class="links-line">
+          <a href="https://doi.org/10.3390/osteology5040037" target="_blank" rel="noopener">doi:10.3390/osteology5040037 ↗</a>
         </p>
       </div>
+      <div class="item-tags"></div>
+    </article>
 
-      <div>
-        <a href="mailto:aclehman31@yahoo.com" class="contact-link">
-          <span class="cl-type">Email</span>
-          <span class="cl-label">aclehman31@yahoo.com</span>
-          <span class="cl-arrow">→</span>
-        </a>
-        <a href="https://linkedin.com/" target="_blank" class="contact-link">
-          <span class="cl-type">LinkedIn</span>
-          <span class="cl-label">linkedin.com/in/andrewlehman</span>
-          <span class="cl-arrow">→</span>
-        </a>
-        
+    <!-- ─── Arthroscopy systematic review ─── -->
+    <article class="item" data-threads="evidence" data-kind="paper"
+             data-start="2026.1" data-end="2026.1" data-sort="2026.1">
+      <div class="item-head">
+        <h3 class="item-title">Medium to Long Term Outcomes of Hip Arthroscopy for FAI in
+          Patients Older Than 40: A Systematic Review</h3>
+        <span class="item-when">2026</span>
+      </div>
+      <p class="item-role"><i>Arthroscopy</i> <span class="slash">/</span> first author
+        <span class="flag">in production</span></p>
+      <div class="item-body">
+        <p class="cite"><b>Lehman A</b>, Lee S, Berzolla E, Lezak B, Youm T.</p>
+        <p>Surgeons hesitate to scope a hip past 40 on the assumption that the cartilage will
+          not hold up. I pooled the published follow-up data to see whether it does.</p>
+      </div>
+      <div class="item-tags"></div>
+    </article>
+
+    <!-- ─── W&L Neuroscience ─── -->
+    <article class="item" data-threads="tooling evidence" data-kind="role"
+             data-start="2024.67" data-end="2025.42" data-sort="2024.67">
+      <div class="item-head">
+        <h3 class="item-title">W&amp;L Department of Neuroscience</h3>
+        <span class="item-when">2024 – 25</span>
+      </div>
+      <p class="item-role">Research Assistant <span class="slash">/</span> Lexington, VA</p>
+      <div class="item-body">
+        <ul>
+          <li>Which genes shift when you change a spider's light cycle. I dissected the central
+              nervous tissue, prepped the RNA-seq libraries, and ran differential expression in
+              DESeq2.</li>
+          <li>I owned every step, from the dissection through the statistics.</li>
+        </ul>
+      </div>
+      <div class="item-tags"></div>
+    </article>
+
+    <!-- ─── AOSSM abstract ─── -->
+    <article class="item" data-threads="evidence" data-kind="paper"
+             data-start="2025.5" data-end="2025.5" data-sort="2025.5">
+      <div class="item-head">
+        <h3 class="item-title">Perioperative LDL Cholesterol and Anti-Inflammatory Synovial
+          Fluid Biomarkers in Knee Surgery</h3>
+        <span class="item-when">2025</span>
+      </div>
+      <p class="item-role">AOSSM Annual Meeting <span class="slash">/</span> presented abstract</p>
+      <div class="item-body">
+        <p class="cite">Sundaram V, Berzolla E, Mercer N, <b>Lehman A</b>, Kaplan D, Strauss E.</p>
+        <p>Higher LDL around the time of surgery tracked with lower anti-inflammatory markers in
+          the joint itself.</p>
+      </div>
+      <div class="item-tags"></div>
+    </article>
+
+    <!-- ─── Mother of Mercy ─── -->
+    <article class="item" data-threads="teams" data-kind="role"
+             data-start="2024.42" data-end="2024.67" data-sort="2024.42">
+      <div class="item-head">
+        <h3 class="item-title">Mother of Mercy Free Medical Clinic</h3>
+        <span class="item-when">2024</span>
+      </div>
+      <p class="item-role">Volunteer Scribe &amp; Medical Assistant <span class="slash">/</span> Manassas, VA</p>
+      <div class="item-body">
+        <ul>
+          <li>Volunteer scribes rotated through every few weeks and chart quality swung with
+              them. I rebuilt the training curriculum around video walkthroughs and proficiency
+              tests.</li>
+          <li>I also ran intake, wrote chart notes, and managed the EHR, because most afternoons
+              the clinic had four volunteers and a full waiting room.</li>
+        </ul>
+      </div>
+      <div class="item-tags"></div>
+    </article>
+
+    <!-- ─── Lexington FD ─── -->
+    <article class="item" data-threads="teams" data-kind="service"
+             data-start="2024.67" data-end="2026.42" data-sort="2024.67">
+      <div class="item-head">
+        <h3 class="item-title">Lexington Volunteer Fire Department</h3>
+        <span class="item-when">2024 – 26</span>
+      </div>
+      <p class="item-role">EMT, NREMT certified <span class="slash">/</span> Rockbridge County, VA</p>
+      <div class="item-body">
+        <ul>
+          <li>Basic life support calls across the county. You get a patient, a partner, and
+              about ninety seconds to work out what matters.</li>
+        </ul>
+      </div>
+      <div class="item-tags"></div>
+    </article>
+
+    <!-- ─── UCSF ─── -->
+    <article class="item" data-threads="evidence" data-kind="role"
+             data-start="2023.42" data-end="2024.42" data-sort="2023.42">
+      <div class="item-head">
+        <h3 class="item-title">UCSF Medical Center, Orthopedic Institute</h3>
+        <span class="item-when">2023 – 24</span>
+      </div>
+      <p class="item-role">Research Assistant <span class="slash">/</span> San Francisco</p>
+      <div class="item-body">
+        <ul>
+          <li>I led a study comparing contrast-enhanced against standard MRI for finding
+              posterior glenoid-labral tears, scoring both against what surgeons found once
+              they were inside.</li>
+          <li>I managed the clinical data in REDCap and ran the analysis in R.</li>
+          <li>The results became a peer-reviewed paper and a protocol recommendation for the
+              department.</li>
+        </ul>
+      </div>
+      <div class="item-tags"></div>
+    </article>
+
+    <!-- ─── CRMM paper ─── -->
+    <article class="item" data-threads="evidence" data-kind="paper"
+             data-start="2024.9" data-end="2024.9" data-sort="2024.9">
+      <div class="item-head">
+        <h3 class="item-title">Humeral Stem Design in Reverse Total Shoulder Arthroplasty</h3>
+        <span class="item-when">2024</span>
+      </div>
+      <p class="item-role"><i>Current Reviews in Musculoskeletal Medicine</i>, 17:616–624
+        <span class="slash">/</span> first author</p>
+      <div class="item-body">
+        <p class="cite"><b>Lehman A</b>, Su F, Feeley BT.</p>
+        <p>Forty years of changes to one implant. Shallower neck-shaft angles and more
+          lateralization fixed the scapular notching that plagued early designs; porous coating
+          made short-stem and stemless implants viable and cut the need for cement.</p>
+        <p class="links-line">
+          <a href="https://doi.org/10.1007/s12178-024-09931-w" target="_blank" rel="noopener">doi:10.1007/s12178-024-09931-w ↗</a>
+        </p>
+      </div>
+      <div class="item-tags"></div>
+    </article>
+
+    <!-- ─── MOON paper ─── -->
+    <article class="item" data-threads="evidence" data-kind="paper"
+             data-start="2024.6" data-end="2024.6" data-sort="2024.6">
+      <div class="item-head">
+        <h3 class="item-title">Does MR Arthrography Improve Evaluation of Patients With
+          Posterior Shoulder Instability?</h3>
+        <span class="item-when">2024</span>
+      </div>
+      <p class="item-role"><i>Orthopaedic Journal of Sports Medicine</i>
+        <span class="slash">/</span> MOON Shoulder Instability Group</p>
+      <div class="item-body">
+        <p class="cite">Su F, Hettrich C, Wolf B, <b>Lehman A</b>, et al.</p>
+        <p>MR arthrography costs more, takes longer, and puts a needle in the joint. Across the
+          MOON multicenter cohort we asked what that buys you for posterior instability, where
+          only 2 to 12 percent of instability patients land.</p>
+        <p class="links-line">
+          <a href="https://doi.org/10.1177/2325967124S00053" target="_blank" rel="noopener">doi:10.1177/2325967124S00053 ↗</a>
+          <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11328265/" target="_blank" rel="noopener">Full text on PMC ↗</a>
+        </p>
+      </div>
+      <div class="item-tags"></div>
+    </article>
+
+    <!-- ─── Career Fellow ─── -->
+    <article class="item" data-threads="teams" data-kind="service"
+             data-start="2024.25" data-end="2026.42" data-sort="2024.25">
+      <div class="item-head">
+        <h3 class="item-title">W&amp;L Office of Career &amp; Professional Development</h3>
+        <span class="item-when">2024 – 26</span>
+      </div>
+      <p class="item-role">Career Fellow <span class="slash">/</span> Lexington, VA</p>
+      <div class="item-body">
+        <ul>
+          <li>I advised students on resumes, interviews, and search strategy, and moderated
+              conversations between students and alumni physicians.</li>
+        </ul>
+      </div>
+      <div class="item-tags"></div>
+    </article>
+
+    <!-- ─── Lacrosse ─── -->
+    <article class="item" data-threads="teams" data-kind="service"
+             data-start="2022.67" data-end="2026.42" data-sort="2022.67">
+      <div class="item-head">
+        <h3 class="item-title">W&amp;L Varsity Men's Lacrosse</h3>
+        <span class="item-when">2022 – 26</span>
+      </div>
+      <p class="item-role">Defenseman <span class="slash">/</span> Lexington, VA</p>
+      <div class="item-body">
+        <ul>
+          <li>Four seasons on defense, 25 hours a week, alongside a biology major.</li>
+          <li>The NSCA named me All-American Strength and Conditioning Athlete of the Year for
+              2025–26.</li>
+        </ul>
+      </div>
+      <div class="item-tags"></div>
+    </article>
+
+    <!-- ─── Habitat ─── -->
+    <article class="item" data-threads="teams" data-kind="service"
+             data-start="2023.67" data-end="2025.05" data-sort="2023.67">
+      <div class="item-head">
+        <h3 class="item-title">Habitat for Humanity</h3>
+        <span class="item-when">2023 – 25</span>
+      </div>
+      <p class="item-role">Volunteer <span class="slash">/</span> Lexington, VA</p>
+      <div class="item-body">
+        <ul>
+          <li>I organized cleanups and service projects through the varsity teams, which meant
+              sourcing supplies and turnout for 50 people who had already practiced that
+              morning.</li>
+        </ul>
+      </div>
+      <div class="item-tags"></div>
+    </article>
+
+    <p class="empty" hidden>Nothing in the index carries that thread.</p>
+  </main>
+
+
+  <!-- ══════════ RECORD ══════════ -->
+  <section class="record-sec" aria-labelledby="record-h">
+    <h2 class="rubric" id="record-h">The rest of the record</h2>
+
+    <div class="record">
+      <div class="rec-row">
+        <div class="rec-key">School</div>
+        <div class="rec-val">
+          <strong>Washington and Lee University</strong>, B.S. Biology with a Data Science minor.
+          Class of 2026, 3.75 GPA.<br>
+          Episcopal High School, class of 2022.
+        </div>
+      </div>
+
+      <div class="rec-row">
+        <div class="rec-key">Honors</div>
+        <div class="rec-val">
+          <ul class="honors">
+            <li>President's List <span class="yr">2024–25, 2025–26</span></li>
+            <li>ETS Major Field Test in Biology, top 10% in the country <span class="yr">2026</span></li>
+            <li>NSCA All-American Strength &amp; Conditioning Athlete of the Year <span class="yr">2025–26</span></li>
+            <li>Johnson Opportunity Grant, $5,500 toward the NYU Langone fellowship <span class="yr">2025</span></li>
+            <li>All-ODAC Academic Team <span class="yr">2023–26</span></li>
+            <li>W&amp;L Scholar-Athlete <span class="yr">2023–26</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rec-row">
+        <div class="rec-key">Quantitative</div>
+        <div class="rec-val">
+          R for differential expression, regression, mixed-effects and hierarchical Bayesian
+          models. Python for wrangling, testing, and visualization. SPSS, Excel, REDCap.
+        </div>
+      </div>
+
+      <div class="rec-row">
+        <div class="rec-key">Building</div>
+        <div class="rec-val">
+          Agent and workflow development on Claude Code and the Claude API. Research
+          automation, screening pipelines, internal tooling.
+        </div>
+      </div>
+
+      <div class="rec-row">
+        <div class="rec-key">Bench</div>
+        <div class="rec-val">
+          PCR, gel electrophoresis, DNA and RNA extraction, cell culture and sterile technique,
+          RNA-seq library prep, dissection.
+        </div>
+      </div>
+
+      <div class="rec-row">
+        <div class="rec-key">Certified</div>
+        <div class="rec-val">
+          EMT, National Registry of Emergency Medical Technicians. CITI Good Clinical Practice.
+          AHA Basic Life Support.
+        </div>
+      </div>
+
+      <div class="rec-row">
+        <div class="rec-key">Languages</div>
+        <div class="rec-val">English. Chinese at an intermediate level.</div>
+      </div>
+
+      <div class="rec-row">
+        <div class="rec-key">Elsewhere</div>
+        <div class="rec-val">Skiing, mountain biking, scuba diving, and any team sport that will have me.</div>
       </div>
     </div>
   </section>
 
 
-  <!-- FOOTER -->
-  <footer>
-    <span class="footer-name">Andrew Lehman · Wa
+  <!-- ══════════ CONTACT ══════════ -->
+  <section class="contact-sec" id="contact" aria-labelledby="contact-h">
+    <h2 class="rubric" id="contact-h">Get in touch</h2>
+
+    <p class="contact-line">
+      Write to me if you build healthcare software, work on applied AI in research or
+      investing, or want to argue about whether a dataset says what its abstract claims.
+    </p>
+
+    <ul class="links">
+      <li>
+        <a href="mailto:aclehman31@yahoo.com">
+          <span class="lk-key">Email</span>
+          <span class="lk-val">aclehman31@yahoo.com</span>
+          <span class="lk-arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/andrew-lehman-/" target="_blank" rel="noopener">
+          <span class="lk-key">LinkedIn</span>
+          <span class="lk-val">/in/andrew-lehman-</span>
+          <span class="lk-arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="colophon">
+      <span>© 2026 Andrew Lehman</span>
+      <span>Newsreader &amp; IBM Plex Mono</span>
+    </div>
+  </section>
+
+</div>
+
+
+<script>
+(function () {
+  'use strict';
+
+  var THREADS = {
+    evidence: 'Evidence',
+    tooling:  'Tooling',
+    teams:    'Teams'
+  };
+  var KINDS = { role: 'Roles', paper: 'Papers', service: 'Service' };
+  var KIND_ORDER = ['role', 'paper', 'service'];
+  var THREAD_ORDER = ['evidence', 'tooling', 'teams'];
+
+  var indexEl = document.getElementById('index');
+  var items   = Array.prototype.slice.call(indexEl.querySelectorAll('.item'));
+  var emptyEl = indexEl.querySelector('.empty');
+  var lensBtns = Array.prototype.slice.call(document.querySelectorAll('.lens [data-lens]'));
+  var threadBtns = Array.prototype.slice.call(document.querySelectorAll('.thread'));
+  var clearBtn = document.querySelector('.clear');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var lens = 'thread';
+  var filter = null;
+
+  /* ---- span bars for the time lens ---- */
+  var T0 = 2022.5, T1 = 2027.0;
+  items.forEach(function (el) {
+    var s = parseFloat(el.dataset.start), e = parseFloat(el.dataset.end);
+    var bar = document.createElement('span');
+    bar.className = 'span';
+    var left = ((s - T0) / (T1 - T0)) * 100;
+    var w = Math.max(((e - s) / (T1 - T0)) * 100, 1.2);
+    bar.innerHTML = '<i style="left:' + left.toFixed(2) + '%;width:' + w.toFixed(2) + '%"></i>';
+    el.querySelector('.item-head').appendChild(bar);
+  });
+
+  /* ---- thread chips on every item ---- */
+  items.forEach(function (el) {
+    var box = el.querySelector('.item-tags');
+    el.dataset.threads.split(' ').forEach(function (t) {
+      var chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'chip';
+      chip.dataset.thread = t;
+      chip.textContent = THREADS[t];
+      box.appendChild(chip);
+    });
+  });
+
+  /* ---- counts on the thread cards ---- */
+  threadBtns.forEach(function (b) {
+    var t = b.dataset.thread;
+    var n = items.filter(function (el) { return el.dataset.threads.indexOf(t) > -1; }).length;
+    b.querySelector('.thread-count').textContent = n;
+  });
+
+  /* ═══ CONSTELLATION ═══
+     Same 14 items, plotted by year against thread. Roles and service draw as spans
+     because they have duration; papers draw as dots because they happened once.
+     Marked aria-hidden: it repeats the index below it, so screen readers skip it. */
+
+  var plot   = document.querySelector('.plot');
+  var svg    = plot.querySelector('svg');
+  var readEl = plot.querySelector('.plot-read');
+  var NS     = 'http://www.w3.org/2000/svg';
+
+  var W = 1000, PL = 84, PR = 14, PT = 28, PB = 40, LANE = 9;
+  var BAND, H;
+
+  function X(t) { return PL + ((t - T0) / (T1 - T0)) * (W - PL - PR); }
+  function Y(t) { return PT + THREAD_ORDER.indexOf(t) * BAND; }
+
+  function make(tag, attrs) {
+    var n = document.createElementNS(NS, tag);
+    for (var k in attrs) n.setAttribute(k, attrs[k]);
+    return n;
+  }
+
+  /* Pack each band into lanes so overlapping spans never sit on top of
+     each other, then size the canvas to whatever the busiest band needs. */
+  function layout() {
+    var bands = {};
+    THREAD_ORDER.forEach(function (t) { bands[t] = []; });
+
+    items.forEach(function (el, i) {
+      var ts = el.dataset.threads.split(' ');
+      var paper = el.dataset.kind === 'paper';
+      var x1, x2;
+      if (paper) {
+        var x = X(parseFloat(el.dataset.sort));
+        x1 = x - 6; x2 = x + 6;
+      } else {
+        x1 = X(parseFloat(el.dataset.start));
+        x2 = Math.max(X(parseFloat(el.dataset.end)), x1 + 7);
+      }
+      bands[ts[0]].push({ el: el, i: i, ts: ts, x1: x1, x2: x2, paper: paper });
+    });
+
+    var widest = 1;
+    THREAD_ORDER.forEach(function (t) {
+      var rows = bands[t].sort(function (a, b) { return a.x1 - b.x1; });
+      var ends = [];
+      rows.forEach(function (r) {
+        var k = 0;
+        while (k < ends.length && ends[k] > r.x1 - 6) k++;
+        ends[k] = r.x2;
+        r.lane = k;
+        r.lanes = 0;
+      });
+      rows.forEach(function (r) { r.lanes = ends.length; });
+      widest = Math.max(widest, ends.length);
+    });
+
+    BAND = 46 + (widest - 1) * LANE;
+    H = PT + (THREAD_ORDER.length - 1) * BAND + PB;
+
+    var out = [];
+    THREAD_ORDER.forEach(function (t) {
+      bands[t].forEach(function (r) {
+        r.y = Y(t) + (r.lane - (r.lanes - 1) / 2) * LANE;
+        out.push(r);
+      });
+    });
+    return out;
+  }
+
+  var marks = [];
+
+  function drawPlot() {
+    while (svg.firstChild) svg.removeChild(svg.firstChild);
+    marks = [];
+
+    var rows = layout();
+
+    /* Let the axis follow the marks rather than a fixed pad, so adding
+       items to a crowded band never pushes them into the year labels. */
+    var ys   = rows.map(function (r) { return r.y; });
+    var topY = Math.min.apply(null, ys);
+    var lowY = Math.max.apply(null, ys);
+    var gridTop = topY - 20, gridEnd = lowY + 15, tickY = lowY + 32;
+    H = tickY + 12;
+
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+
+    /* year gridlines */
+    for (var y = 2023; y <= 2026; y++) {
+      svg.appendChild(make('line', {
+        class: 'grid', x1: X(y), x2: X(y), y1: gridTop, y2: gridEnd
+      }));
+      var lab = make('text', { class: 'tick', x: X(y), y: tickY });
+      lab.textContent = y;
+      svg.appendChild(lab);
+    }
+
+    /* thread baselines + labels */
+    THREAD_ORDER.forEach(function (t) {
+      svg.appendChild(make('line', {
+        class: 'base', x1: PL, x2: W - PR, y1: Y(t), y2: Y(t)
+      }));
+      var bl = make('text', { class: 'band', x: PL - 16, y: Y(t) + 4 });
+      bl.textContent = THREADS[t].toLowerCase();
+      svg.appendChild(bl);
+    });
+
+    /* connectors first, so marks sit on top */
+    rows.forEach(function (r) {
+      if (r.ts.length < 2) return;
+      var x = r.paper ? (r.x1 + r.x2) / 2 : r.x1 + 5;
+      for (var i = 1; i < r.ts.length; i++) {
+        svg.appendChild(make('line', {
+          class: 'tie', x1: x, x2: x, y1: r.y, y2: Y(r.ts[i])
+        }));
+      }
+    });
+
+    /* marks */
+    rows.forEach(function (r) {
+      var g = make('g', { class: 'mark', 'data-threads': r.el.dataset.threads });
+
+      if (r.paper) {
+        var cx = (r.x1 + r.x2) / 2;
+        g.appendChild(make('circle', { class: 'dot', cx: cx, cy: r.y, r: 4.5 }));
+        g.appendChild(make('circle', { class: 'hit', cx: cx, cy: r.y, r: 11 }));
+      } else {
+        var w = r.x2 - r.x1;
+        g.appendChild(make('rect', { class: 'bar', x: r.x1, y: r.y - 3, width: w, height: 6, rx: 3 }));
+        g.appendChild(make('rect', { class: 'hit', x: r.x1 - 3, y: r.y - 9, width: w + 6, height: 18 }));
+      }
+
+      svg.appendChild(g);
+      marks[r.i] = g;
+    });
+  }
+
+  var defaultRead = readEl.textContent;
+
+  function titleOf(el) {
+    return el.querySelector('.item-title').textContent.replace(/\s+/g, ' ').trim();
+  }
+
+  function bindPlot() {
+    marks.forEach(function (g, i) {
+      var el = items[i];
+      g.addEventListener('mouseenter', function () {
+        readEl.textContent = titleOf(el) + '  ·  ' + el.querySelector('.item-when').textContent.trim();
+        g.classList.add('hot');
+      });
+      g.addEventListener('mouseleave', function () {
+        readEl.textContent = defaultRead;
+        g.classList.remove('hot');
+      });
+      g.addEventListener('click', function () {
+        if (!el.classList.contains('open')) el.querySelector('.item-head').click();
+        el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+      });
+    });
+  }
+
+  function syncPlot() {
+    marks.forEach(function (g, i) {
+      var el = items[i];
+      g.classList.toggle('dim', !!filter && el.dataset.threads.indexOf(filter) === -1);
+      g.classList.toggle('on', el.classList.contains('open'));
+    });
+  }
+
+  drawPlot();
+  bindPlot();
+  plot.hidden = false;
+
+  /* ---- expand / collapse ---- */
+  items.forEach(function (el) {
+    var head = el.querySelector('.item-head');
+    head.setAttribute('tabindex', '0');
+    head.setAttribute('role', 'button');
+    head.setAttribute('aria-expanded', 'false');
+    function toggle() {
+      var open = el.classList.toggle('open');
+      head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      syncPlot();
+    }
+    head.addEventListener('click', toggle);
+    head.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter' || ev.key === ' ') { ev.preventDefault(); toggle(); }
+    });
+  });
+
+  /* ---- arrange ---- */
+  function groupsFor(l) {
+    if (l === 'time')   return [{ key: 'all', label: '' }];
+    if (l === 'kind')   return KIND_ORDER.map(function (k) { return { key: k, label: KINDS[k] }; });
+    return THREAD_ORDER.map(function (t) { return { key: t, label: THREADS[t] }; });
+  }
+
+  function bucketOf(el, l) {
+    if (l === 'time') return 'all';
+    if (l === 'kind') return el.dataset.kind;
+    return el.dataset.threads.split(' ')[0];
+  }
+
+  function render() {
+    Array.prototype.slice.call(indexEl.querySelectorAll('.grp')).forEach(function (g) { g.remove(); });
+
+    var visible = items.filter(function (el) {
+      return !filter || el.dataset.threads.indexOf(filter) > -1;
+    });
+
+    items.forEach(function (el) { el.hidden = visible.indexOf(el) === -1; });
+    emptyEl.hidden = visible.length > 0;
+
+    indexEl.classList.toggle('lens-time', lens === 'time');
+
+    var frag = document.createDocumentFragment();
+
+    groupsFor(lens).forEach(function (g) {
+      var inGroup = visible
+        .filter(function (el) { return bucketOf(el, lens) === g.key; })
+        .sort(function (a, b) { return parseFloat(b.dataset.sort) - parseFloat(a.dataset.sort); });
+
+      if (!inGroup.length) return;
+
+      if (g.label) {
+        var h = document.createElement('div');
+        h.className = 'grp';
+        h.innerHTML = '<span class="grp-name">' + g.label + '</span>' +
+                      '<span class="grp-n">' + inGroup.length + '</span>';
+        frag.appendChild(h);
+      }
+      inGroup.forEach(function (el) { frag.appendChild(el); });
+    });
+
+    indexEl.insertBefore(frag, emptyEl);
+
+    if (!reduce) {
+      indexEl.classList.remove('settle');
+      void indexEl.offsetWidth;
+      indexEl.classList.add('settle');
+    }
+
+    syncPlot();
+  }
+
+  /* ---- controls ---- */
+  lensBtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      lens = b.dataset.lens;
+      lensBtns.forEach(function (o) { o.setAttribute('aria-pressed', String(o === b)); });
+      render();
+    });
+  });
+
+  function setFilter(t) {
+    filter = (filter === t) ? null : t;
+    threadBtns.forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.thread === filter));
+    });
+    document.body.classList.toggle('filtering', !!filter);
+    clearBtn.hidden = !filter;
+    render();
+  }
+
+  threadBtns.forEach(function (b) {
+    b.addEventListener('click', function () { setFilter(b.dataset.thread); });
+  });
+
+  indexEl.addEventListener('click', function (ev) {
+    var chip = ev.target.closest ? ev.target.closest('.chip') : null;
+    if (!chip) return;
+    ev.stopPropagation();
+    setFilter(chip.dataset.thread);
+    document.getElementById('controls').scrollIntoView({
+      behavior: reduce ? 'auto' : 'smooth', block: 'start'
+    });
+  });
+
+  clearBtn.addEventListener('click', function () { setFilter(null); });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
