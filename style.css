@@ -90,27 +90,44 @@ button {
   margin-bottom: 1.8rem;
 }
 
-/* Portrait. Drop a square portrait.jpg next to index.html; the monogram
-   shows until then. */
-.portrait {
+/* Portrait. Three square photos beside index.html:
+   portrait-evidence.jpg, portrait-tooling.jpg, portrait-teams.jpg.
+   Missing ones drop out; all three missing falls back to the monogram. */
+
+.portrait { width: 9.5rem; flex-shrink: 0; margin-top: 0.5rem; }
+
+.port-stack {
   position: relative;
-  width: 7.5rem;
-  height: 7.5rem;
-  flex-shrink: 0;
-  margin-top: 0.6rem;
+  width: 9.5rem;
+  height: 9.5rem;
   background: var(--paper-sunk);
   border: 1px solid var(--rule);
   overflow: hidden;
+  cursor: pointer;
 }
-.portrait img {
+
+.port-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  opacity: 0;
   filter: grayscale(1) contrast(1.06);
-  transition: filter 0.5s var(--ease);
+  transform: scale(1.03);
+  transition: opacity 0.85s var(--ease), transform 1.2s var(--ease), filter 0.5s var(--ease);
 }
-.portrait::after {
+.port-img.gone { display: none; }
+
+.portrait[data-active='evidence'] .port-img[data-thread='evidence'],
+.portrait[data-active='tooling']  .port-img[data-thread='tooling'],
+.portrait[data-active='teams']    .port-img[data-thread='teams'] {
+  opacity: 1;
+  transform: none;
+}
+
+.port-stack::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -120,23 +137,53 @@ button {
   pointer-events: none;
   transition: opacity 0.5s var(--ease);
 }
-.portrait:hover img { filter: grayscale(0.35) contrast(1); }
-.portrait:hover::after { opacity: 0; }
+.port-stack:hover .port-img { filter: grayscale(0.3) contrast(1); }
+.port-stack:hover::after { opacity: 0; }
 
-.portrait figcaption {
+.port-mono {
   position: absolute;
   inset: 0;
   display: none;
   align-items: center;
   justify-content: center;
   font-family: var(--mono);
-  font-size: 1.15rem;
-  letter-spacing: 0.16em;
+  font-size: 1.3rem;
+  letter-spacing: 0.18em;
   color: var(--ink-faint);
 }
-.portrait.empty { background: var(--paper-sunk); }
-.portrait.empty::after { display: none; }
-.portrait.empty figcaption { display: flex; }
+
+.portrait.empty .port-stack { cursor: default; }
+.portrait.empty .port-stack::after { display: none; }
+.portrait.empty .port-mono { display: flex; }
+.portrait.empty figcaption { visibility: hidden; }
+
+.portrait figcaption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding-top: 0.6rem;
+  font-family: var(--mono);
+  font-size: 0.63rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--ink-mute);
+}
+
+.port-cap { white-space: nowrap; color: var(--ink-mute); }
+.portrait[data-active] .port-cap { transition: color 0.4s var(--ease); }
+
+.port-pips { display: flex; gap: 0.3rem; flex-shrink: 0; }
+.pip {
+  width: 5px;
+  height: 5px;
+  padding: 0;
+  border-radius: 50%;
+  background: var(--rule);
+  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.pip:hover { background: var(--ink-faint); }
+.pip[aria-pressed='true'] { background: var(--accent); transform: scale(1.25); }
 
 .masthead h1 {
   font-weight: 250;
@@ -670,7 +717,9 @@ button {
 
 .no-js .controls,
 .no-js .thread-count,
+.no-js .port-pips,
 .no-js .empty { display: none; }
+.no-js .port-stack { cursor: default; }
 .no-js .item-body { grid-template-rows: 1fr; opacity: 1; }
 .no-js .item-head { cursor: default; }
 
@@ -687,7 +736,8 @@ button {
   .shell { padding: 0 1.5rem 4.5rem; }
   .masthead { padding: 3.5rem 0 3rem; }
   .masthead-top { flex-direction: column-reverse; align-items: flex-start; gap: 1.4rem; }
-  .portrait { width: 5rem; height: 5rem; margin-top: 0; }
+  .portrait { width: 6.5rem; margin-top: 0; }
+  .port-stack { width: 6.5rem; height: 6.5rem; }
   .plot { padding-top: 2.4rem; }
   .plot figcaption { flex-direction: column; gap: 0.5rem; }
   .plot-key i { margin-left: 0; margin-right: 0.35rem; }
@@ -710,8 +760,10 @@ button {
 }
 
 @media print {
-  .controls, .colophon, .thread-count, .plot { display: none; }
-  .portrait { border-color: #999; }
+  .controls, .colophon, .thread-count, .plot, .port-pips { display: none; }
+  .port-stack { border-color: #999; }
+  .port-img { opacity: 0; }
+  .portrait .port-img[data-thread='evidence'] { opacity: 1; transform: none; }
   .item-body, .item-tags { grid-template-rows: 1fr; opacity: 1; max-height: none; }
   body { font-size: 11pt; color: #000; background: #fff; }
   .shell { max-width: none; padding: 0; }

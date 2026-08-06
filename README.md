@@ -41,10 +41,33 @@ readers get the content once instead of twice.
 
 ## Portrait
 
-Drop a square `portrait.jpg` next to `index.html` and the masthead picks it up. Until then it
-shows an `AL` monogram, and it falls back to the monogram if the file ever goes missing. The
-image sits under a grayscale and duotone treatment that clears on hover, so it reads as part of
-the palette rather than a photo pasted onto it. Roughly 600×600 is plenty.
+Three square photos, one per thread. Drop them beside `index.html`:
+
+```
+portrait-evidence.jpg
+portrait-tooling.jpg
+portrait-teams.jpg
+```
+
+Around 800×800 is plenty. Shoot or crop them square, and keep the three visually consistent —
+similar distance, similar light — or the swap reads as a scrapbook instead of a sequence.
+
+It cross-fades every 5.2 seconds while nobody is interacting, and hands over control the moment
+someone is:
+
+| Action | Result |
+|--------|--------|
+| Hover a thread card | portrait swaps to that thread, rotation pauses |
+| Leave it | rotation resumes |
+| Click a pip | pins that slide |
+| Filter a thread | pins the matching slide until you clear the filter |
+| Click the photo | filters the index to the thread showing |
+
+Any missing file drops out of the rotation on its own. All three missing falls back to the `AL`
+monogram. Rotation stops entirely under `prefers-reduced-motion`, and the pips still work.
+
+**Edit the `alt` text.** The three images ship with placeholder descriptions. Replace them with
+what each photo actually shows — that text is what screen readers and search engines get.
 
 ## Adding an item
 

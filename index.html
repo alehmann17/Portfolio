@@ -29,12 +29,24 @@
     <div class="masthead-top">
       <h1>Andrew<br><em>Lehman</em></h1>
 
-      <!-- Drop a square portrait.jpg beside index.html and this fills itself in.
-           Until then it shows the monogram. -->
-      <figure class="portrait">
-        <img src="portrait.jpg" alt="Andrew Lehman"
-             onerror="this.closest('.portrait').classList.add('empty');this.remove();">
-        <figcaption aria-hidden="true">AL</figcaption>
+      <!-- Three square photos beside index.html: portrait-evidence.jpg,
+           portrait-tooling.jpg, portrait-teams.jpg. Any that are missing get
+           skipped. If all three are missing it falls back to the monogram.
+           Edit the alt text once you know what each photo shows. -->
+      <figure class="portrait" data-active="evidence">
+        <div class="port-stack">
+          <img class="port-img" data-thread="evidence" src="portrait-evidence.jpg"
+               alt="Andrew Lehman at work on research data">
+          <img class="port-img" data-thread="tooling" src="portrait-tooling.jpg"
+               alt="Andrew Lehman building analysis tooling">
+          <img class="port-img" data-thread="teams" src="portrait-teams.jpg"
+               alt="Andrew Lehman with a team">
+          <span class="port-mono" aria-hidden="true">AL</span>
+        </div>
+        <figcaption>
+          <span class="port-cap">Evidence</span>
+          <span class="port-pips" role="group" aria-label="Choose a thread"></span>
+        </figcaption>
       </figure>
     </div>
 
@@ -409,7 +421,7 @@
         <div class="rec-key">School</div>
         <div class="rec-val">
           <strong>Washington and Lee University</strong>, B.S. Biology with a Data Science minor.
-          Class of 2026.<br>
+          Class of 2026, 3.75 GPA.<br>
           Episcopal High School, class of 2022.
         </div>
       </div>
@@ -563,6 +575,97 @@
     var n = items.filter(function (el) { return el.dataset.threads.indexOf(t) > -1; }).length;
     b.querySelector('.thread-count').textContent = n;
   });
+
+  /* ═══ PORTRAIT ═══
+     Three photos, one per thread. It advances on its own while nobody is
+     interacting, and hands control over the moment someone does: hovering a
+     thread card sets it, filtering locks it, clicking the photo filters the
+     index. Missing files get skipped; if all three are missing it shows the
+     monogram instead. */
+
+  var portrait = document.querySelector('.portrait');
+  var stack    = portrait.querySelector('.port-stack');
+  var capEl    = portrait.querySelector('.port-cap');
+  var pipsEl   = portrait.querySelector('.port-pips');
+  var slides   = {};
+  var live     = [];
+  var pIdx     = 0;
+  var pTimer   = null;
+  var pHeld    = false;   /* an explicit choice: a pip, or an active filter */
+  var pPaused  = false;   /* transient: the cursor is over something */
+
+  Array.prototype.slice.call(portrait.querySelectorAll('.port-img')).forEach(function (img) {
+    var t = img.dataset.thread;
+    slides[t] = img;
+    function drop() {
+      img.classList.add('gone');
+      live = live.filter(function (x) { return x !== t; });
+      refreshPips();
+      if (!live.length) portrait.classList.add('empty');
+      else if (live.indexOf(portrait.dataset.active) === -1) showSlide(live[0]);
+    }
+    if (img.complete && img.naturalWidth === 0) { drop(); return; }
+    img.addEventListener('error', drop);
+    live.push(t);
+  });
+
+  function refreshPips() {
+    pipsEl.innerHTML = '';
+    if (live.length < 2) return;
+    live.forEach(function (t) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'pip';
+      b.dataset.thread = t;
+      b.setAttribute('aria-label', THREADS[t]);
+      b.setAttribute('aria-pressed', String(t === portrait.dataset.active));
+      b.addEventListener('click', function () { pHeld = true; showSlide(t); });
+      pipsEl.appendChild(b);
+    });
+  }
+
+  function showSlide(t) {
+    if (!t || live.indexOf(t) === -1) return;
+    portrait.dataset.active = t;
+    capEl.textContent = THREADS[t];
+    pIdx = live.indexOf(t);
+    Array.prototype.slice.call(pipsEl.children).forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.thread === t));
+    });
+  }
+
+  function advance() {
+    if (pHeld || pPaused || live.length < 2) return;
+    showSlide(live[(pIdx + 1) % live.length]);
+  }
+
+  refreshPips();
+  showSlide(live.indexOf('evidence') > -1 ? 'evidence' : live[0]);
+
+  if (!reduce && live.length > 1) pTimer = setInterval(advance, 5200);
+
+  portrait.addEventListener('mouseenter', function () { pPaused = true; });
+  portrait.addEventListener('mouseleave', function () { pPaused = false; });
+
+  stack.addEventListener('click', function () {
+    if (portrait.classList.contains('empty')) return;
+    setFilter(portrait.dataset.active);
+    document.getElementById('controls').scrollIntoView({
+      behavior: reduce ? 'auto' : 'smooth', block: 'start'
+    });
+  });
+
+  threadBtns.forEach(function (b) {
+    b.addEventListener('mouseenter', function () {
+      pPaused = true;
+      showSlide(b.dataset.thread);
+    });
+    b.addEventListener('mouseleave', function () {
+      pPaused = false;
+      if (filter) showSlide(filter);
+    });
+  });
+
 
   /* ═══ CONSTELLATION ═══
      Same 14 items, plotted by year against thread. Roles and service draw as spans
@@ -826,6 +929,8 @@
     });
     document.body.classList.toggle('filtering', !!filter);
     clearBtn.hidden = !filter;
+    pHeld = !!filter;
+    if (filter) showSlide(filter);
     render();
   }
 
