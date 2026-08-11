@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500&display=swap');
-/* BUILD r8 · 2026-08-06 */
+/* BUILD r9 · 2026-08-06 */
 
 /* ═══════════════════════════════════════════════════════
    Andrew Lehman
@@ -153,17 +153,22 @@ button {
 }
 .thread:hover { background: var(--paper-sunk); }
 
-/* Photo band. Collapses to nothing if the file is missing. */
+/* Photo band. The box owns its height via padding-bottom (75% = 4:3) and the
+   image is taken out of flow, so a slow or odd-sized file can never change the
+   band height. All three bands stay identical no matter what loads. */
 .thread-shot {
   display: block;
   position: relative;
-  aspect-ratio: 4 / 3;
+  height: 0;
+  padding-bottom: 75%;
   overflow: hidden;
   background: var(--paper-sunk);
   border-bottom: 1px solid var(--rule);
   margin-bottom: 1.35rem;
 }
 .thread-shot img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;

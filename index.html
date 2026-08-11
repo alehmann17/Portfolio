@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- ════════════════════════════════════════
-     BUILD r8 · 2026-08-06
+     BUILD r9 · 2026-08-06
      Check this line matches what you deployed.
      ════════════════════════════════════════ -->
 <html lang="en" class="no-js">
@@ -59,12 +59,12 @@
     <h2 class="rubric" id="threads-h">Three threads run through all of it</h2>
 
     <!-- Photos live beside index.html: portrait-evidence.jpg, portrait-tooling.jpg,
-         portrait-teams.jpg. A card whose image is missing collapses to text on its
-         own. Edit each alt to describe what the photo actually shows. -->
+         portrait-teams.jpg. All three load or none do — one missing file drops the
+         whole photo band, because two photos and a gap looks broken. -->
     <div class="thread-grid">
       <button class="thread" data-thread="evidence" type="button" aria-pressed="false">
         <span class="thread-shot">
-          <img src="portrait-evidence.jpg" alt="" loading="lazy">
+          <img src="portrait-evidence.jpg" alt="" decoding="async">
         </span>
         <span class="thread-name">Evidence</span>
         <span class="thread-desc">
@@ -76,7 +76,7 @@
 
       <button class="thread" data-thread="tooling" type="button" aria-pressed="false">
         <span class="thread-shot">
-          <img src="portrait-tooling.jpg" alt="" loading="lazy">
+          <img src="portrait-tooling.jpg" alt="" decoding="async">
         </span>
         <span class="thread-name">Tooling</span>
         <span class="thread-desc">
@@ -88,7 +88,7 @@
 
       <button class="thread" data-thread="teams" type="button" aria-pressed="false">
         <span class="thread-shot">
-          <img src="portrait-teams.jpg" alt="" loading="lazy">
+          <img src="portrait-teams.jpg" alt="" decoding="async">
         </span>
         <span class="thread-name">Teams</span>
         <span class="thread-desc">
@@ -507,7 +507,7 @@
 
     <div class="colophon">
       <span>© 2026 Andrew Lehman</span>
-      <span data-rev="r8">Newsreader &amp; IBM Plex Mono</span>
+      <span data-rev="r9">Newsreader &amp; IBM Plex Mono</span>
     </div>
   </section>
 
@@ -571,15 +571,19 @@
   });
 
   /* ═══ THREAD PHOTOS ═══
-     One image per card. A card whose file is missing collapses to text
-     rather than showing a broken frame. */
+     All three bands or none. Hiding a single card's photo leaves the other two
+     taller than it and the row reads as broken, so one missing file drops the
+     whole band and the cards go back to plain text together. */
+
+  function dropAllShots() {
+    threadBtns.forEach(function (b) { b.classList.add('no-shot'); });
+  }
 
   threadBtns.forEach(function (b) {
     var img = b.querySelector('.thread-shot img');
-    if (!img) return;
-    function drop() { b.classList.add('no-shot'); }
-    if (img.complete && img.naturalWidth === 0) drop();
-    else img.addEventListener('error', drop);
+    if (!img) { dropAllShots(); return; }
+    if (img.complete && img.naturalWidth === 0) dropAllShots();
+    else img.addEventListener('error', dropAllShots);
   });
 
 

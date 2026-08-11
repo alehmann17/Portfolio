@@ -39,9 +39,9 @@ own viewBox to whatever the busiest band needs. Add five more items to one threa
 to fit. It carries `aria-hidden` because it repeats the index directly below it, so screen
 readers get the content once instead of twice.
 
-## Portrait
+## Photos
 
-Three square photos, one per thread. Drop them beside `index.html`:
+One per thread, sitting at the top of its card. Drop them beside `index.html`:
 
 ```
 portrait-evidence.jpg
@@ -49,25 +49,33 @@ portrait-tooling.jpg
 portrait-teams.jpg
 ```
 
-Around 800×800 is plenty. Shoot or crop them square, and keep the three visually consistent —
-similar distance, similar light — or the swap reads as a scrapbook instead of a sequence.
+They render at 4:3 (16:9 on narrow screens), cropped from center, so keep the subject away from
+the edges. Around 1200px wide is plenty. Keep the three consistent in distance and light or the
+row reads as a scrapbook.
 
-It cross-fades every 5.2 seconds while nobody is interacting, and hands over control the moment
-someone is:
+Each sits under a grayscale and duotone wash that clears when you hover or select its card.
 
-| Action | Result |
-|--------|--------|
-| Hover a thread card | portrait swaps to that thread, rotation pauses |
-| Leave it | rotation resumes |
-| Click a pip | pins that slide |
-| Filter a thread | pins the matching slide until you clear the filter |
-| Click the photo | filters the index to the thread showing |
+**All three load or none do.** If any file is missing, the whole photo band drops and the three
+cards go back to plain text together. Two photos and a gap looks broken; three text cards looks
+deliberate. So if the photos vanish, one filename is wrong — check all three before assuming
+it's the code.
 
-Any missing file drops out of the rotation on its own. All three missing falls back to the `AL`
-monogram. Rotation stops entirely under `prefers-reduced-motion`, and the pips still work.
+The band height comes from `padding-bottom: 75%` with the image absolutely positioned inside.
+That keeps all three bands identical no matter what the source images measure. Don't swap it
+back to `aspect-ratio` with an in-flow image; that lets a stray file change one card's height.
 
-**Edit the `alt` text.** The three images ship with placeholder descriptions. Replace them with
-what each photo actually shows — that text is what screen readers and search engines get.
+The `alt` attributes are empty on purpose — each card already carries its name and description
+as real text, so a screen reader would otherwise hear the same thing twice. If a photo carries
+information the caption doesn't, describe it there.
+
+## Email
+
+The address never appears in the served HTML. It's split across two `data-` attributes and
+reassembled at runtime, which defeats scrapers reading the raw source. With JS off it degrades
+to `aclehman31 at yahoo dot com`, which a person can still read and retype.
+
+To change it, edit `data-u` and `data-d` on the `.mail` link and the visible fallback text
+beside them.
 
 ## Adding an item
 
