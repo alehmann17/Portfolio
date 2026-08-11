@@ -26,29 +26,7 @@
 
   <!-- ══════════ MASTHEAD ══════════ -->
   <header class="masthead" id="top">
-    <div class="masthead-top">
-      <h1>Andrew<br><em>Lehman</em></h1>
-
-      <!-- Three square photos beside index.html: portrait-evidence.jpg,
-           portrait-tooling.jpg, portrait-teams.jpg. Any that are missing get
-           skipped. If all three are missing it falls back to the monogram.
-           Edit the alt text once you know what each photo shows. -->
-      <figure class="portrait" data-active="evidence">
-        <div class="port-stack">
-          <img class="port-img" data-thread="evidence" src="portrait-evidence.jpg"
-               alt="Andrew Lehman at work on research data">
-          <img class="port-img" data-thread="tooling" src="portrait-tooling.jpg"
-               alt="Andrew Lehman building analysis tooling">
-          <img class="port-img" data-thread="teams" src="portrait-teams.jpg"
-               alt="Andrew Lehman with a team">
-          <span class="port-mono" aria-hidden="true">AL</span>
-        </div>
-        <figcaption>
-          <span class="port-cap">Evidence</span>
-          <span class="port-pips" role="group" aria-label="Choose a thread"></span>
-        </figcaption>
-      </figure>
-    </div>
+    <h1>Andrew<br><em>Lehman</em></h1>
 
     <p class="standfirst">
       <b>Origination, Hg</b> <span class="dot"></span> New York
@@ -76,8 +54,14 @@
   <section class="threads" aria-labelledby="threads-h">
     <h2 class="rubric" id="threads-h">Three threads run through all of it</h2>
 
+    <!-- Photos live beside index.html: portrait-evidence.jpg, portrait-tooling.jpg,
+         portrait-teams.jpg. A card whose image is missing collapses to text on its
+         own. Edit each alt to describe what the photo actually shows. -->
     <div class="thread-grid">
       <button class="thread" data-thread="evidence" type="button" aria-pressed="false">
+        <span class="thread-shot">
+          <img src="portrait-evidence.jpg" alt="" loading="lazy">
+        </span>
         <span class="thread-name">Evidence</span>
         <span class="thread-desc">
           Does the data support the decision someone already made? Diagnostic accuracy at
@@ -87,6 +71,9 @@
       </button>
 
       <button class="thread" data-thread="tooling" type="button" aria-pressed="false">
+        <span class="thread-shot">
+          <img src="portrait-tooling.jpg" alt="" loading="lazy">
+        </span>
         <span class="thread-name">Tooling</span>
         <span class="thread-desc">
           Build the instrument instead of running the task again. Sourcing pipelines,
@@ -96,6 +83,9 @@
       </button>
 
       <button class="thread" data-thread="teams" type="button" aria-pressed="false">
+        <span class="thread-shot">
+          <img src="portrait-teams.jpg" alt="" loading="lazy">
+        </span>
         <span class="thread-name">Teams</span>
         <span class="thread-desc">
           Work that depends on people who rotate out. Volunteer scribes, ambulance crews,
@@ -495,10 +485,12 @@
     </p>
 
     <ul class="links">
+      <!-- Assembled by JS so harvesters scraping the raw HTML come up empty.
+           With JS off it still reads as an address a person can retype. -->
       <li>
-        <a href="mailto:aclehman31@yahoo.com">
+        <a class="mail" href="#contact" data-u="aclehman31" data-d="yahoo.com">
           <span class="lk-key">Email</span>
-          <span class="lk-val">aclehman31@yahoo.com</span>
+          <span class="lk-val">aclehman31 <span class="at">at</span> yahoo <span class="at">dot</span> com</span>
           <span class="lk-arrow" aria-hidden="true">↗</span>
         </a>
       </li>
@@ -576,95 +568,28 @@
     b.querySelector('.thread-count').textContent = n;
   });
 
-  /* ═══ PORTRAIT ═══
-     Three photos, one per thread. It advances on its own while nobody is
-     interacting, and hands control over the moment someone does: hovering a
-     thread card sets it, filtering locks it, clicking the photo filters the
-     index. Missing files get skipped; if all three are missing it shows the
-     monogram instead. */
-
-  var portrait = document.querySelector('.portrait');
-  var stack    = portrait.querySelector('.port-stack');
-  var capEl    = portrait.querySelector('.port-cap');
-  var pipsEl   = portrait.querySelector('.port-pips');
-  var slides   = {};
-  var live     = [];
-  var pIdx     = 0;
-  var pTimer   = null;
-  var pHeld    = false;   /* an explicit choice: a pip, or an active filter */
-  var pPaused  = false;   /* transient: the cursor is over something */
-
-  Array.prototype.slice.call(portrait.querySelectorAll('.port-img')).forEach(function (img) {
-    var t = img.dataset.thread;
-    slides[t] = img;
-    function drop() {
-      img.classList.add('gone');
-      live = live.filter(function (x) { return x !== t; });
-      refreshPips();
-      if (!live.length) portrait.classList.add('empty');
-      else if (live.indexOf(portrait.dataset.active) === -1) showSlide(live[0]);
-    }
-    if (img.complete && img.naturalWidth === 0) { drop(); return; }
-    img.addEventListener('error', drop);
-    live.push(t);
-  });
-
-  function refreshPips() {
-    pipsEl.innerHTML = '';
-    if (live.length < 2) return;
-    live.forEach(function (t) {
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'pip';
-      b.dataset.thread = t;
-      b.setAttribute('aria-label', THREADS[t]);
-      b.setAttribute('aria-pressed', String(t === portrait.dataset.active));
-      b.addEventListener('click', function () { pHeld = true; showSlide(t); });
-      pipsEl.appendChild(b);
-    });
-  }
-
-  function showSlide(t) {
-    if (!t || live.indexOf(t) === -1) return;
-    portrait.dataset.active = t;
-    capEl.textContent = THREADS[t];
-    pIdx = live.indexOf(t);
-    Array.prototype.slice.call(pipsEl.children).forEach(function (b) {
-      b.setAttribute('aria-pressed', String(b.dataset.thread === t));
-    });
-  }
-
-  function advance() {
-    if (pHeld || pPaused || live.length < 2) return;
-    showSlide(live[(pIdx + 1) % live.length]);
-  }
-
-  refreshPips();
-  showSlide(live.indexOf('evidence') > -1 ? 'evidence' : live[0]);
-
-  if (!reduce && live.length > 1) pTimer = setInterval(advance, 5200);
-
-  portrait.addEventListener('mouseenter', function () { pPaused = true; });
-  portrait.addEventListener('mouseleave', function () { pPaused = false; });
-
-  stack.addEventListener('click', function () {
-    if (portrait.classList.contains('empty')) return;
-    setFilter(portrait.dataset.active);
-    document.getElementById('controls').scrollIntoView({
-      behavior: reduce ? 'auto' : 'smooth', block: 'start'
-    });
-  });
+  /* ═══ THREAD PHOTOS ═══
+     One image per card. A card whose file is missing collapses to text
+     rather than showing a broken frame. */
 
   threadBtns.forEach(function (b) {
-    b.addEventListener('mouseenter', function () {
-      pPaused = true;
-      showSlide(b.dataset.thread);
-    });
-    b.addEventListener('mouseleave', function () {
-      pPaused = false;
-      if (filter) showSlide(filter);
-    });
+    var img = b.querySelector('.thread-shot img');
+    if (!img) return;
+    function drop() { b.classList.add('no-shot'); }
+    if (img.complete && img.naturalWidth === 0) drop();
+    else img.addEventListener('error', drop);
   });
+
+
+  /* ═══ EMAIL ═══
+     Built at runtime, so the address never appears in the served HTML. */
+
+  var mail = document.querySelector('.mail');
+  if (mail) {
+    var addr = mail.dataset.u + String.fromCharCode(64) + mail.dataset.d;
+    mail.href = 'mailto:' + addr;
+    mail.querySelector('.lk-val').textContent = addr;
+  }
 
 
   /* ═══ CONSTELLATION ═══

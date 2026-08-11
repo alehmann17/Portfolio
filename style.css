@@ -82,109 +82,6 @@ button {
 
 .masthead { padding: 7rem 0 4rem; }
 
-.masthead-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 2rem;
-  margin-bottom: 1.8rem;
-}
-
-/* Portrait. Three square photos beside index.html:
-   portrait-evidence.jpg, portrait-tooling.jpg, portrait-teams.jpg.
-   Missing ones drop out; all three missing falls back to the monogram. */
-
-.portrait { width: 9.5rem; flex-shrink: 0; margin-top: 0.5rem; }
-
-.port-stack {
-  position: relative;
-  width: 9.5rem;
-  height: 9.5rem;
-  background: var(--paper-sunk);
-  border: 1px solid var(--rule);
-  overflow: hidden;
-  cursor: pointer;
-}
-
-.port-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  opacity: 0;
-  filter: grayscale(1) contrast(1.06);
-  transform: scale(1.03);
-  transition: opacity 0.85s var(--ease), transform 1.2s var(--ease), filter 0.5s var(--ease);
-}
-.port-img.gone { display: none; }
-
-.portrait[data-active='evidence'] .port-img[data-thread='evidence'],
-.portrait[data-active='tooling']  .port-img[data-thread='tooling'],
-.portrait[data-active='teams']    .port-img[data-thread='teams'] {
-  opacity: 1;
-  transform: none;
-}
-
-.port-stack::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--accent);
-  mix-blend-mode: multiply;
-  opacity: 0.16;
-  pointer-events: none;
-  transition: opacity 0.5s var(--ease);
-}
-.port-stack:hover .port-img { filter: grayscale(0.3) contrast(1); }
-.port-stack:hover::after { opacity: 0; }
-
-.port-mono {
-  position: absolute;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--mono);
-  font-size: 1.3rem;
-  letter-spacing: 0.18em;
-  color: var(--ink-faint);
-}
-
-.portrait.empty .port-stack { cursor: default; }
-.portrait.empty .port-stack::after { display: none; }
-.portrait.empty .port-mono { display: flex; }
-.portrait.empty figcaption { visibility: hidden; }
-
-.portrait figcaption {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.6rem;
-  padding-top: 0.6rem;
-  font-family: var(--mono);
-  font-size: 0.63rem;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: var(--ink-mute);
-}
-
-.port-cap { white-space: nowrap; color: var(--ink-mute); }
-.portrait[data-active] .port-cap { transition: color 0.4s var(--ease); }
-
-.port-pips { display: flex; gap: 0.3rem; flex-shrink: 0; }
-.pip {
-  width: 5px;
-  height: 5px;
-  padding: 0;
-  border-radius: 50%;
-  background: var(--rule);
-  transition: background 0.3s var(--ease), transform 0.3s var(--ease);
-}
-.pip:hover { background: var(--ink-faint); }
-.pip[aria-pressed='true'] { background: var(--accent); transform: scale(1.25); }
-
 .masthead h1 {
   font-weight: 250;
   font-size: clamp(3.4rem, 11vw, 6.4rem);
@@ -249,11 +146,52 @@ button {
 .thread {
   position: relative;
   background: var(--paper);
-  padding: 1.5rem 1.4rem 2.6rem;
+  padding: 0 0 2.6rem;
   display: block;
   transition: background 0.3s var(--ease);
 }
 .thread:hover { background: var(--paper-sunk); }
+
+/* Photo band. Collapses to nothing if the file is missing. */
+.thread-shot {
+  display: block;
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--paper-sunk);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 1.35rem;
+}
+.thread-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1) contrast(1.05);
+  transform: scale(1.015);
+  transition: filter 0.55s var(--ease), transform 0.9s var(--ease);
+}
+.thread-shot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent);
+  mix-blend-mode: multiply;
+  opacity: 0.18;
+  transition: opacity 0.55s var(--ease);
+}
+.thread:hover .thread-shot img,
+.thread[aria-pressed='true'] .thread-shot img {
+  filter: grayscale(0.2) contrast(1);
+  transform: scale(1.05);
+}
+.thread:hover .thread-shot::after,
+.thread[aria-pressed='true'] .thread-shot::after { opacity: 0; }
+
+.thread.no-shot .thread-shot { display: none; }
+.thread.no-shot { padding-top: 1.5rem; }
+
+.thread-name, .thread-desc, .thread-count { padding-left: 1.4rem; padding-right: 1.4rem; }
 
 .thread-name {
   display: block;
@@ -271,7 +209,7 @@ button {
 }
 .thread-count {
   position: absolute;
-  left: 1.4rem; bottom: 1.2rem;
+  left: 0; bottom: 1.2rem;
   font-family: var(--mono);
   font-size: 0.66rem;
   color: var(--ink-faint);
@@ -696,6 +634,8 @@ button {
   flex-shrink: 0;
 }
 .links .lk-val { flex: 1; font-size: 1.02rem; font-weight: 300; word-break: break-word; }
+.links .at { color: var(--ink-faint); font-size: 0.8rem; padding: 0 0.1rem; }
+.links .mail .lk-val { word-break: break-all; }
 .links .lk-arrow { font-family: var(--mono); font-size: 0.78rem; color: var(--ink-faint); transition: color 0.25s, transform 0.3s var(--ease); }
 .links a:hover .lk-arrow { color: var(--accent); transform: translateX(3px); }
 
@@ -717,9 +657,7 @@ button {
 
 .no-js .controls,
 .no-js .thread-count,
-.no-js .port-pips,
 .no-js .empty { display: none; }
-.no-js .port-stack { cursor: default; }
 .no-js .item-body { grid-template-rows: 1fr; opacity: 1; }
 .no-js .item-head { cursor: default; }
 
@@ -735,9 +673,7 @@ button {
 @media (max-width: 760px) {
   .shell { padding: 0 1.5rem 4.5rem; }
   .masthead { padding: 3.5rem 0 3rem; }
-  .masthead-top { flex-direction: column-reverse; align-items: flex-start; gap: 1.4rem; }
-  .portrait { width: 6.5rem; margin-top: 0; }
-  .port-stack { width: 6.5rem; height: 6.5rem; }
+  .thread-shot { aspect-ratio: 16 / 9; }
   .plot { padding-top: 2.4rem; }
   .plot figcaption { flex-direction: column; gap: 0.5rem; }
   .plot-key i { margin-left: 0; margin-right: 0.35rem; }
@@ -760,10 +696,8 @@ button {
 }
 
 @media print {
-  .controls, .colophon, .thread-count, .plot, .port-pips { display: none; }
-  .port-stack { border-color: #999; }
-  .port-img { opacity: 0; }
-  .portrait .port-img[data-thread='evidence'] { opacity: 1; transform: none; }
+  .controls, .colophon, .thread-count, .plot, .thread-shot { display: none; }
+  .thread { padding-top: 1.5rem; }
   .item-body, .item-tags { grid-template-rows: 1fr; opacity: 1; max-height: none; }
   body { font-size: 11pt; color: #000; background: #fff; }
   .shell { max-width: none; padding: 0; }
