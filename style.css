@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500&display=swap');
+/* BUILD r8 · 2026-08-06 */
 
 /* ═══════════════════════════════════════════════════════
    Andrew Lehman
@@ -475,15 +476,23 @@ button {
 
 /* Expanding body */
 
+/* minmax(0, Xfr) rather than a bare 0fr: an fr track keeps an automatic
+   min-content floor, so a bare 0fr leaves the row at full height and the
+   item collapses to a tall empty gap. */
 .item-body {
   display: grid;
-  grid-template-rows: 0fr;
+  grid-template-rows: minmax(0, 0fr);
   transition: grid-template-rows 0.45s var(--ease), opacity 0.35s var(--ease);
   opacity: 0;
   overflow: hidden;
 }
-.item.open .item-body { grid-template-rows: 1fr; opacity: 1; }
-.item-body > * { min-height: 0; }
+.item.open .item-body { grid-template-rows: minmax(0, 1fr); opacity: 1; }
+.item-body > * { min-height: 0; overflow: hidden; }
+
+/* Belt and braces: if a browser ever fails to collapse the track, clip the
+   whole thing to zero anyway. */
+.item:not(.open) .item-body { max-height: 0; }
+.item.open .item-body { max-height: 200rem; }
 
 .item-body ul { list-style: none; padding-bottom: 0.4rem; }
 .item-body li {
@@ -524,16 +533,19 @@ button {
 
 /* Thread chips */
 
+/* Padding is not clipped by max-height, so a collapsed row would still
+   carry its bottom padding. Animate the padding shut too. */
 .item-tags {
   display: flex;
   gap: 0.4rem;
-  padding-bottom: 1.15rem;
   opacity: 0;
   max-height: 0;
+  padding-bottom: 0;
   overflow: hidden;
-  transition: opacity 0.35s var(--ease), max-height 0.4s var(--ease);
+  transition: opacity 0.35s var(--ease), max-height 0.4s var(--ease),
+              padding-bottom 0.4s var(--ease);
 }
-.item.open .item-tags { opacity: 1; max-height: 4rem; }
+.item.open .item-tags { opacity: 1; max-height: 4rem; padding-bottom: 1.15rem; }
 
 .chip {
   font-family: var(--mono);
