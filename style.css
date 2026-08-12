@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500&display=swap');
-/* BUILD r13 · 2026-08-06 */
+/* BUILD r14 · 2026-08-06 */
 
 /* ═══════════════════════════════════════════════════════
    Andrew Lehman
@@ -194,21 +194,23 @@ button {
   background: var(--paper-sunk);
   border-bottom: 1px solid var(--rule);
 }
-/* Per-photo framing. Set --zoom and --focus inline on any <img> to crop it
-   without touching the file:
-     --zoom  1 = fit the band, 1.4 = punch in 40%
-     --focus object-position, e.g. 50% 30% to favour the top of the frame */
+/* Per-photo framing. Set --zoom and --focus inline on any <img>:
+     --zoom   1 fits the band · 1.2 punches in 20%
+     --focus  which part of the photo survives the crop.
+              Second number is vertical: 50% centres, 30% keeps the top,
+              70% keeps the bottom. Faces sit in the upper third of most
+              photos, so the default leans up. */
 .thread-shot img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: var(--focus, 50% 50%);
+  object-position: var(--focus, 50% 30%);
   display: block;
   filter: grayscale(1) contrast(1.05);
-  transform: scale(var(--zoom, 1.015));
-  transform-origin: var(--focus, 50% 50%);
+  transform: scale(var(--zoom, 1));
+  transform-origin: var(--focus, 50% 30%);
   transition: filter 0.55s var(--ease), transform 0.9s var(--ease);
 }
 .thread-shot::after {
@@ -224,7 +226,7 @@ button {
 .thread:hover .thread-shot img,
 .thread[aria-pressed='true'] .thread-shot img {
   filter: grayscale(0.2) contrast(1);
-  transform: scale(calc(var(--zoom, 1.015) * 1.035));
+  transform: scale(calc(var(--zoom, 1) * 1.035));
 }
 .thread:hover .thread-shot::after,
 .thread[aria-pressed='true'] .thread-shot::after { opacity: 0; }

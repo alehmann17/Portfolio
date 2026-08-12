@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- ════════════════════════════════════════
-     BUILD r13 · 2026-08-06
+     BUILD r14 · 2026-08-06
      Check this line matches what you deployed.
      ════════════════════════════════════════ -->
 <html lang="en" class="no-js">
@@ -64,7 +64,9 @@
     <div class="thread-grid">
       <button class="thread" data-thread="evidence" type="button" aria-pressed="false">
         <span class="thread-shot">
-          <img src="portrait-evidence.jpg" alt="" decoding="async">
+          <!-- --focus second number: lower = keep more of the top -->
+          <img src="portrait-evidence.jpg" alt="" decoding="async"
+               style="--focus: 50% 26%">
         </span>
         <span class="thread-name">Evidence</span>
         <span class="thread-desc">
@@ -78,7 +80,7 @@
         <span class="thread-shot">
           <!-- --zoom punches in, --focus picks the point it crops around -->
           <img src="portrait-tooling.jpg" alt="" decoding="async"
-               style="--zoom: 1.28; --focus: 42% 45%">
+               style="--zoom: 1.08; --focus: 46% 24%">
         </span>
         <span class="thread-name">Tooling</span>
         <span class="thread-desc">
@@ -90,7 +92,8 @@
 
       <button class="thread" data-thread="teams" type="button" aria-pressed="false">
         <span class="thread-shot">
-          <img src="portrait-teams.jpg" alt="" decoding="async">
+          <img src="portrait-teams.jpg" alt="" decoding="async"
+               style="--focus: 50% 22%">
         </span>
         <span class="thread-name">Teams</span>
         <span class="thread-desc">
@@ -509,7 +512,7 @@
 
     <div class="colophon">
       <span>© 2026 Andrew Lehman</span>
-      <span data-rev="r13">Newsreader &amp; IBM Plex Mono</span>
+      <span data-rev="r14">Newsreader &amp; IBM Plex Mono</span>
     </div>
   </section>
 
