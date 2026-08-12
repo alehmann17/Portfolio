@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500&display=swap');
-/* BUILD r9 · 2026-08-06 */
+/* BUILD r11 · 2026-08-06 */
 
 /* ═══════════════════════════════════════════════════════
    Andrew Lehman
@@ -166,15 +166,21 @@ button {
   border-bottom: 1px solid var(--rule);
   margin-bottom: 1.35rem;
 }
+/* Per-photo framing. Set --zoom and --focus inline on any <img> to crop it
+   without touching the file:
+     --zoom  1 = fit the band, 1.4 = punch in 40%
+     --focus object-position, e.g. 50% 30% to favour the top of the frame */
 .thread-shot img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: var(--focus, 50% 50%);
   display: block;
   filter: grayscale(1) contrast(1.05);
-  transform: scale(1.015);
+  transform: scale(var(--zoom, 1.015));
+  transform-origin: var(--focus, 50% 50%);
   transition: filter 0.55s var(--ease), transform 0.9s var(--ease);
 }
 .thread-shot::after {
@@ -186,10 +192,11 @@ button {
   opacity: 0.18;
   transition: opacity 0.55s var(--ease);
 }
+/* Hover nudges whatever zoom the photo already has rather than resetting it. */
 .thread:hover .thread-shot img,
 .thread[aria-pressed='true'] .thread-shot img {
   filter: grayscale(0.2) contrast(1);
-  transform: scale(1.05);
+  transform: scale(calc(var(--zoom, 1.015) * 1.035));
 }
 .thread:hover .thread-shot::after,
 .thread[aria-pressed='true'] .thread-shot::after { opacity: 0; }

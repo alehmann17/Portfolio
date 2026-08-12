@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- ════════════════════════════════════════
-     BUILD r9 · 2026-08-06
+     BUILD r11 · 2026-08-06
      Check this line matches what you deployed.
      ════════════════════════════════════════ -->
 <html lang="en" class="no-js">
@@ -76,7 +76,9 @@
 
       <button class="thread" data-thread="tooling" type="button" aria-pressed="false">
         <span class="thread-shot">
-          <img src="portrait-tooling.jpg" alt="" decoding="async">
+          <!-- --zoom punches in, --focus picks the point it crops around -->
+          <img src="portrait-tooling.jpg" alt="" decoding="async"
+               style="--zoom: 1.28; --focus: 42% 45%">
         </span>
         <span class="thread-name">Tooling</span>
         <span class="thread-desc">
@@ -507,7 +509,7 @@
 
     <div class="colophon">
       <span>© 2026 Andrew Lehman</span>
-      <span data-rev="r9">Newsreader &amp; IBM Plex Mono</span>
+      <span data-rev="r11">Newsreader &amp; IBM Plex Mono</span>
     </div>
   </section>
 
@@ -575,15 +577,23 @@
      taller than it and the row reads as broken, so one missing file drops the
      whole band and the cards go back to plain text together. */
 
-  function dropAllShots() {
+  function dropAllShots(src) {
     threadBtns.forEach(function (b) { b.classList.add('no-shot'); });
+    if (window.console) {
+      console.warn(
+        '[site] Photo band hidden because this file did not load:\n  ' + src +
+        '\nResolved to: ' + new URL(src, document.baseURI).href +
+        '\nAll three photos drop together on purpose. Fix the filename and they all return.'
+      );
+    }
   }
 
   threadBtns.forEach(function (b) {
     var img = b.querySelector('.thread-shot img');
-    if (!img) { dropAllShots(); return; }
-    if (img.complete && img.naturalWidth === 0) dropAllShots();
-    else img.addEventListener('error', dropAllShots);
+    if (!img) { dropAllShots('(no <img> in the ' + b.dataset.thread + ' card)'); return; }
+    var src = img.getAttribute('src');
+    if (img.complete && img.naturalWidth === 0) dropAllShots(src);
+    else img.addEventListener('error', function () { dropAllShots(src); });
   });
 
 
