@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500&display=swap');
-/* BUILD r18 · 2026-08-06 */
+/* BUILD r19 · 2026-08-06 */
 
 /* ═══════════════════════════════════════════════════════
    Andrew Lehman
@@ -163,12 +163,6 @@ button {
      line with it, since each band is a % of its own column width. */
   grid-template-columns: repeat(3, minmax(0, 1fr));
 
-  /* Four shared rows: photo, name, description, count. Each card maps its
-     own children onto these via subgrid, so the three cards align row by
-     row instead of each stacking to its own rhythm. 1fr on the description
-     row absorbs the difference in text length and pins the counts level. */
-  grid-template-rows: auto auto 1fr auto;
-
   gap: 1px;
   background: var(--rule);
   border: 1px solid var(--rule);
@@ -182,20 +176,16 @@ button {
   position: relative;
   background: var(--paper);
   padding: 0;
-  display: grid;
-  grid-template-rows: subgrid;
-  grid-row: span 4;
-  row-gap: 0;
+  /* Flex column, not subgrid. Grid stretches all three cards to the same
+     height; the photo bands are already identical; margin-top:auto drops
+     each count onto a shared baseline. Same alignment, no subgrid. */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-bottom: 1.5rem;
   transition: background 0.3s var(--ease);
 }
 .thread:hover { background: var(--paper-sunk); }
-
-/* Browsers without subgrid fall back to the old independent stacking.
-   Heights may drift by a line, but nothing breaks. */
-@supports not (grid-template-rows: subgrid) {
-  .thread-grid { grid-template-rows: none; }
-  .thread { display: block; grid-row: auto; padding-bottom: 2.6rem; }
-}
 
 /* Photo band. The box owns its height via padding-bottom (75% = 4:3) and the
    image is taken out of flow, so a slow or odd-sized file can never change the
@@ -250,13 +240,14 @@ button {
    cards stay aligned with each other. */
 .thread.no-shot .thread-shot { display: none; }
 
+.thread-shot { flex: none; }
+
 .thread-name {
   display: block;
   padding: 1.35rem 1.4rem 0.55rem;
   font-size: 1.32rem;
   font-weight: 400;
   letter-spacing: -0.015em;
-  align-self: end;
 }
 .thread-desc {
   display: block;
@@ -268,18 +259,16 @@ button {
 }
 .thread-count {
   display: block;
-  padding: 0 1.4rem 1.5rem;
+  padding: 0.6rem 1.4rem 0;
   font-family: var(--mono);
   font-size: 0.66rem;
   color: var(--ink-faint);
   letter-spacing: 0.05em;
-  align-self: end;
+  margin-top: auto;
 }
 .thread-count::after { content: ' items'; }
 
-@supports not (grid-template-rows: subgrid) {
-  .thread-count { position: absolute; left: 0; bottom: 1.2rem; padding-bottom: 0; }
-}
+
 
 .thread::after {
   content: '';
@@ -297,7 +286,11 @@ button {
 
 /* ── Constellation ─────────────────────────────────────── */
 
-.plot { padding-top: 3.2rem; }
+.plot {
+  padding-top: 3.2rem;
+  position: relative;
+  z-index: 1;
+}
 
 .plot svg {
   display: block;
@@ -769,16 +762,10 @@ button {
 @media (max-width: 760px) {
   .shell { padding: 0 1.5rem 4.5rem; }
   .masthead { padding: 3.5rem 0 3rem; }
-  /* One card per row here, so there are no siblings to align against and
-     subgrid has no job. Cards stack normally. A full-width 4:3 band would
-     eat most of the screen, so go cinematic. */
-  .thread-grid {
-    --band: 52%;
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
-  }
-  .thread { display: block; grid-row: auto; padding: 0 0 0.4rem; }
-  .thread-name { padding-top: 1.2rem; }
+  /* One card per row here, so a full-width 4:3 band would eat most of the
+     screen. Go cinematic. */
+  .thread-grid { --band: 52%; grid-template-columns: 1fr; }
+  .thread { padding-bottom: 1.2rem; }
 
   .plot { padding-top: 2.4rem; }
   .plot figcaption { flex-direction: column; gap: 0.5rem; }
