@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..500&family=IBM+Plex+Mono:wght@400;500&display=swap');
-/* BUILD r16 · 2026-08-06 */
+/* BUILD r18 · 2026-08-06 */
 
 /* ═══════════════════════════════════════════════════════
    Andrew Lehman
@@ -17,6 +17,13 @@
   --rule-soft:  #eeeae2;
   --accent:     #8c3a2b;
 
+  /* One colour per thread. Used by the plot marks, the card accents,
+     the chips, and the index group headings, so a colour means the same
+     thing everywhere on the page. */
+  --t-evidence: #8c3a2b;   /* oxblood */
+  --t-tooling:  #2f6068;   /* deep teal */
+  --t-teams:    #7a6520;   /* ochre */
+
   --text: 'Newsreader', Georgia, serif;
   --mono: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -33,6 +40,10 @@
     --rule:       #2c2925;
     --rule-soft:  #232120;
     --accent:     #d1745e;
+
+    --t-evidence: #d1745e;
+    --t-tooling:  #6fb0ba;
+    --t-teams:    #c6a751;
   }
 }
 
@@ -163,6 +174,10 @@ button {
   border: 1px solid var(--rule);
 }
 
+.thread[data-thread='evidence'] { --tc: var(--t-evidence); }
+.thread[data-thread='tooling']  { --tc: var(--t-tooling); }
+.thread[data-thread='teams']    { --tc: var(--t-teams); }
+
 .thread {
   position: relative;
   background: var(--paper);
@@ -217,7 +232,7 @@ button {
   content: '';
   position: absolute;
   inset: 0;
-  background: var(--accent);
+  background: var(--tc, var(--accent));
   mix-blend-mode: multiply;
   opacity: 0.18;
   transition: opacity 0.55s var(--ease);
@@ -271,14 +286,14 @@ button {
   position: absolute;
   left: 0; right: 0; bottom: 0;
   height: 2px;
-  background: var(--accent);
+  background: var(--tc, var(--accent));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s var(--ease);
 }
 .thread[aria-pressed='true']::after { transform: scaleX(1); }
 .thread[aria-pressed='true'] { background: var(--paper-sunk); }
-.thread[aria-pressed='true'] .thread-name { color: var(--accent); }
+.thread[aria-pressed='true'] .thread-name { color: var(--tc, var(--accent)); }
 
 /* ── Constellation ─────────────────────────────────────── */
 
@@ -310,25 +325,40 @@ button {
   text-anchor: end;
 }
 
+/* Each mark takes its colour from its primary thread. */
+.plot .mark[data-primary='evidence'] { --tc: var(--t-evidence); }
+.plot .mark[data-primary='tooling']  { --tc: var(--t-tooling); }
+.plot .mark[data-primary='teams']    { --tc: var(--t-teams); }
+
 .plot .mark { cursor: pointer; }
-.plot .dot, .plot .bar {
-  fill: var(--accent);
-  opacity: 0.58;
-  transition: opacity 0.3s var(--ease), fill 0.3s var(--ease);
+.plot .bar {
+  fill: var(--tc, var(--accent));
+  opacity: 0.62;
+  transition: opacity 0.3s var(--ease);
 }
-.plot .dot { fill: none; stroke: var(--accent); stroke-width: 1.6; opacity: 0.7; }
+.plot .dot {
+  fill: var(--paper);
+  stroke: var(--tc, var(--accent));
+  stroke-width: 1.8;
+  opacity: 0.85;
+  transition: opacity 0.3s var(--ease), stroke-width 0.3s var(--ease);
+}
 .plot .hit { fill: transparent; }
+
+.plot .band[data-thread='evidence'] { fill: var(--t-evidence); }
+.plot .band[data-thread='tooling']  { fill: var(--t-tooling); }
+.plot .band[data-thread='teams']    { fill: var(--t-teams); }
 
 .plot .mark:hover .dot,
 .plot .mark.hot .dot,
-.plot .mark.on  .dot { opacity: 1; stroke-width: 2.4; }
+.plot .mark.on  .dot { opacity: 1; stroke-width: 3; }
 
 .plot .mark:hover .bar,
 .plot .mark.hot .bar,
 .plot .mark.on  .bar { opacity: 1; }
 
 .plot .mark.dim .dot,
-.plot .mark.dim .bar { opacity: 0.13; }
+.plot .mark.dim .bar { opacity: 0.12; }
 .plot .mark.dim { cursor: default; }
 
 .plot figcaption {
@@ -425,8 +455,11 @@ button {
   font-size: 0.68rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--tc, var(--accent));
 }
+.grp[data-thread='evidence'] { --tc: var(--t-evidence); }
+.grp[data-thread='tooling']  { --tc: var(--t-tooling); }
+.grp[data-thread='teams']    { --tc: var(--t-teams); }
 .grp:first-child { padding-top: 1.4rem; }
 .grp-n { color: var(--ink-faint); letter-spacing: 0.05em; }
 .grp::after {
@@ -606,7 +639,10 @@ button {
   border-radius: 999px;
   transition: color 0.2s, border-color 0.2s;
 }
-.chip:hover { color: var(--accent); border-color: var(--accent); }
+.chip[data-thread='evidence'] { --tc: var(--t-evidence); }
+.chip[data-thread='tooling']  { --tc: var(--t-tooling); }
+.chip[data-thread='teams']    { --tc: var(--t-teams); }
+.chip:hover { color: var(--tc, var(--accent)); border-color: var(--tc, var(--accent)); }
 
 .empty {
   padding: 3rem 0;

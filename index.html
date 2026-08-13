@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!-- ════════════════════════════════════════
-     BUILD r16 · 2026-08-06
+     BUILD r18 · 2026-08-06
      Check this line matches what you deployed.
      ════════════════════════════════════════ -->
 <html lang="en" class="no-js">
@@ -515,7 +515,7 @@
 
     <div class="colophon">
       <span>© 2026 Andrew Lehman</span>
-      <span data-rev="r16">Newsreader &amp; IBM Plex Mono</span>
+      <span data-rev="r18">Newsreader &amp; IBM Plex Mono</span>
     </div>
   </section>
 
@@ -624,7 +624,7 @@
   var readEl = plot.querySelector('.plot-read');
   var NS     = 'http://www.w3.org/2000/svg';
 
-  var W = 1000, PL = 84, PR = 14, PT = 28, PB = 40, LANE = 9;
+  var W = 1000, PL = 84, PR = 14, PT = 40, PB = 40, LANE = 9;
   var BAND, H;
 
   function X(t) { return PL + ((t - T0) / (T1 - T0)) * (W - PL - PR); }
@@ -671,7 +671,7 @@
       widest = Math.max(widest, ends.length);
     });
 
-    BAND = 46 + (widest - 1) * LANE;
+    BAND = 56 + (widest - 1) * LANE;
     H = PT + (THREAD_ORDER.length - 1) * BAND + PB;
 
     var out = [];
@@ -717,7 +717,7 @@
       svg.appendChild(make('line', {
         class: 'base', x1: PL, x2: W - PR, y1: Y(t), y2: Y(t)
       }));
-      var bl = make('text', { class: 'band', x: PL - 16, y: Y(t) + 4 });
+      var bl = make('text', { class: 'band', x: PL - 16, y: Y(t) + 4, 'data-thread': t });
       bl.textContent = THREADS[t].toLowerCase();
       svg.appendChild(bl);
     });
@@ -735,7 +735,11 @@
 
     /* marks */
     rows.forEach(function (r) {
-      var g = make('g', { class: 'mark', 'data-threads': r.el.dataset.threads });
+      var g = make('g', {
+        class: 'mark',
+        'data-threads': r.el.dataset.threads,
+        'data-primary': r.ts[0]
+      });
 
       if (r.paper) {
         var cx = (r.x1 + r.x2) / 2;
@@ -842,6 +846,7 @@
       if (g.label) {
         var h = document.createElement('div');
         h.className = 'grp';
+        if (lens === 'thread') h.dataset.thread = g.key;
         h.innerHTML = '<span class="grp-name">' + g.label + '</span>' +
                       '<span class="grp-n">' + inGroup.length + '</span>';
         frag.appendChild(h);
@@ -876,8 +881,6 @@
     });
     document.body.classList.toggle('filtering', !!filter);
     clearBtn.hidden = !filter;
-    pHeld = !!filter;
-    if (filter) showSlide(filter);
     render();
   }
 
